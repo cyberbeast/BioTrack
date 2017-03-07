@@ -1,3 +1,4 @@
+var GraphQLDate = require('graphql-date');
 var Supplier = require('../models/supplier');
 var Body = require('../models/body');
 
@@ -10,8 +11,10 @@ const resolvers = {
     supplier() {
       return Supplier.find().then((res) => res);
     }
-
   },
+
+  Date: GraphQLDate,
+
   Body: {
     supplier(body) {
       return Supplier.findById(body.supplier).then((res) => res);

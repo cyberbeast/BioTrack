@@ -40,6 +40,6 @@ testem.log
 Thumbs.db
 
 #config files
-confg.json
+config.json
 .babelrc
 .editorconfig
