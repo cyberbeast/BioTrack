@@ -2,8 +2,8 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var supplierSchema = new Schema({
-    name: String,
-    description: String,
+    meta_Name: String,
+    Description: String,
 });
 
 supplierSchema.methods.getSupplierList = function() {

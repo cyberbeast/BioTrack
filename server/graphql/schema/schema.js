@@ -1,76 +1,33 @@
+import { enum_types } from './enum';
+
 const typeDefinitions = `
-scalar _vsap_importation_app_number
 scalar _Date
-scalar _id
-
-enum _gender {
-  male
-  female
-}
-
-enum _race {
-  asian
-  black
-  caucasian
-  latino
-  other
-}
-
-enum _ash_status {
-  return_ash
-  no_return_ash
-}
-
-enum _disposition {
-  cremation
-  return_to_supplier
-}
-
-enum _usage {
-  cab
-  asl
-  dasl
-}
 
 type Supplier {
   name: String
   description: String
-  subjects: [String]
-}
-
-type Dates {
-  subject_arrival: _Date 
-  death: _Date
-}
-
-type id {
-  supplier_subject: String
+  subjects: [Subject]
 }
 
 type Subject {
-  vsap_importation_app_number: vsap_importation_app_number
-  date: Dates
+  id_VdhVsapImportationAppNumber: String
+  id_SupplierSubject: String
+  date_SubjectArrival: _Date
+  date_Death: _Date
   supplier: Supplier
-  identification_numbers: _id
-  gender: _gender
-  race: _race
-  age: Int
-  cause_of_death: String
-  ash_status: _ash_status
-  disposition: _disposition
-  usage: _usage
+  meta_Gender: VALUES_gender
+  meta_Race: VALUES_race
+  meta_Age: Int
+  meta_CauseOfDeath: String
+  meta_AshStatus: VALUES_ash_status
+  meta_Disposition: _disposition
+  meta_Usage: VALUES_usage
   notes: String
-  height: Int
-
-}
-
-type Body {
-  name: String
-  supplier: Supplier
+  measurement_Height: Int
+  measurement_Weight: Int
 }
 
 type Query {
-  body: [Body]
   subject: [Subject]
   supplier: [Supplier]
 }
@@ -81,4 +38,4 @@ schema {
 
 `;
 
-export default [typeDefinitions];
+export default [enum_types, typeDefinitions];
