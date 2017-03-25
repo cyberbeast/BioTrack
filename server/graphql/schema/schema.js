@@ -10,11 +10,17 @@ type Supplier {
 }
 
 type Subject {
+  // ID fields
   id_VdhVsapImportationAppNumber: String
   id_SupplierSubject: String
+
+  // Date fields
   date_SubjectArrival: _Date
   date_Death: _Date
+  
   supplier: Supplier
+  
+  // Meta fields
   meta_Gender: VALUES_gender
   meta_Race: VALUES_race
   meta_Age: Int
@@ -22,7 +28,10 @@ type Subject {
   meta_AshStatus: VALUES_ash_status
   meta_Disposition: _disposition
   meta_Usage: VALUES_usage
+  
   notes: String
+  
+  // Measurement fields
   measurement_Height: Int
   measurement_Weight: Int
 }

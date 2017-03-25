@@ -20,6 +20,6 @@ var subjectSchema = new Schema({
 
 });
 
-var Body = mongoose.model('Body', bodySchema);
-module.exports = Body;
+var Subject = mongoose.model('Subject', subjectSchema);
+module.exports = Subject;
 

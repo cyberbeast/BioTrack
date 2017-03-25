@@ -15,8 +15,9 @@ import bodyParser from 'body-parser';
 import Schema from './server/graphql/schema/schema';
 import Resolvers from './server/graphql/resolvers/resolvers';
 // GraphQL Models for BioTrack
-import Supplier from './server/graphql/models/supplier';
-import Body from './server/graphql/models/body';
+// import Supplier from './server/graphql/models/supplier';
+// import Subject from './server/graphql/models/subject';
+// import Body from './server/graphql/models/body';
 
 // For dummy data population only. REMOVE FOR PRODUCTION!
 import casual from 'casual';
@@ -26,7 +27,7 @@ const api = require('./server/routes/api');
 
 const app = express();
 
-// GraohQL stuff...
+// GraphQL stuff...
 const executableSchema = makeExecutableSchema({
   typeDefs: Schema,
   resolvers: Resolvers,
@@ -37,36 +38,45 @@ app.use('/graphql', bodyParser.json(), apolloExpress({
   context: {},
 }));
 
-app.use('/graphiql', graphiqlExpress({
-  endpointURL: '/graphql',
-}));
+// app.use('/graphiql', graphiqlExpress({
+  // endpointURL: '/graphql',
+// }));
 
-const mongo = mongoose.connect(config.DB_URL);
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function () {
-  console.log("DB Connected!");
-  casual.seed(123);
+// const mongo = mongoose.connect(config.DB_URL);
+// var db = mongoose.connection;
+// db.on('error', console.error.bind(console, 'connection error:'));
+// db.once('open', function () {
+//   console.log("DB Connected!");
+//   casual.seed(123);
 
-  var dummy_supplier = new Supplier({
-    name: casual.name,
-    description: casual.short_description,
-  });
+//   var dummy_supplier = new Supplier({
+//     name: casual.name,
+//     description: casual.short_description,
+//   });
   
-  dummy_supplier.save(function (err, supplier) {
-    console.log("Added Supplier: ", supplier.id);
+//   dummy_supplier.save(function (err, supplier) {
+//     console.log("Added Supplier: ", supplier.id);
 
-    var dummy_body = new Body({
-      name: casual.name,
-      supplier: supplier.id
-    });
+//     var dummy_subject = new Subject({
+//       id_VdhVsapImportationAppNumber: casual.integer,
+//       id_SupplierSubject: casual.integer,
 
-    dummy_body.save(function (err, body) {
-      console.log("Added Body: \t" + body.id);
-    });
+//       date_SubjectArrival: casual.date,
+//       date_Death: casual.date,
 
-  });
-});
+//       supplier: supplier.id,
+
+//       meta_Gender: casual.random_element(),
+//       meta_Race: casual.random_element(['Asian', 'Hispanic', 'Latino']),
+
+//     });
+
+//     dummy_body.save(function (err, body) {
+//       console.log("Added Body: \t" + body.id);
+//     });
+
+//   });
+// });
 
 // Parsers for POST data
 app.use(bodyParser.json());
