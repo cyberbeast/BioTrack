@@ -5,6 +5,7 @@
   "angular-cli": {},
   "scripts": {
     "ng": "ng",
+    "populate-db-first": "babel-node ./populatedb.js",
     "start": "nodemon ./server.js --exec babel-node",
     "start-angular": "ng serve",
     "test": "ng test",
@@ -30,6 +31,7 @@
     "graphql-date": "^1.0.3",
     "graphql-server-express": "^0.6.0",
     "graphql-tools": "^0.10.0",
+    "lodash": "^4.17.4",
     "mongoose": "^4.8.3",
     "primeng": "^1.0.0-beta.20",
     "rxjs": "^5.0.1",
