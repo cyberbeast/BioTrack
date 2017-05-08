@@ -10,5 +10,5 @@ supplierSchema.methods.getSupplierList = function() {
      return Supplier.find();
 }
 
-var Supplier = mongoose.model('Supplier', supplierSchema);
-module.exports = Supplier; 
+var SupplierModel = mongoose.model('Supplier', supplierSchema);
+module.exports = SupplierModel; 

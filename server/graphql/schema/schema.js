@@ -1,25 +1,31 @@
-const typeDefinitions = `
+import { makeExecutableSchema } from 'graphql-tools';
+import Resolvers from '../resolvers/resolvers';
+import Subject from './subject';
+import Supplier from './supplier';
+import EnumTypes from './enum';
 
-type Supplier {
-  name: String
-  description: String
-  subjects: [String]
-}
+// # supplier(name: String): Supplier
 
-type Body {
-  name: String
-  supplier: Supplier
-}
+const RootQuery = `
+  type RootQuery {
+    getSuppliers: [Supplier]
+    getSubjectInfoById(id: String!): Subject
+    
+    getSupplierInfoById(id: String!): Supplier
+    getSupplierInfoByName(name: String!): Supplier
 
-type Query {
-  body: [Body]
-  supplier: [Supplier]
-}
+    getSubjects: [Subject]
 
-schema {
-  query: Query
-}
-
+  }
 `;
 
-export default [typeDefinitions];
+const SchemaDefinition = `
+  schema {
+    query: RootQuery
+  }
+`;
+
+export default makeExecutableSchema({
+  typeDefs: [SchemaDefinition, RootQuery, EnumTypes, Subject, Supplier],
+  resolvers: Resolvers
+});
