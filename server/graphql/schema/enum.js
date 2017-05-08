@@ -1,4 +1,4 @@
-const enum_types = `
+const EnumTypes = `
 enum VALUES_gender {
   male
   female
@@ -29,4 +29,4 @@ enum VALUES_usage {
 }
 `;
 
-export default () => [enum_types];
+export default () => [EnumTypes];

@@ -1,50 +1,31 @@
-import { enum_types } from './enum';
+import { makeExecutableSchema } from 'graphql-tools';
+import Resolvers from '../resolvers/resolvers';
+import Subject from './subject';
+import Supplier from './supplier';
+import EnumTypes from './enum';
 
-const typeDefinitions = `
-scalar _Date
+// # supplier(name: String): Supplier
 
-type Supplier {
-  name: String
-  description: String
-  subjects: [Subject]
-}
+const RootQuery = `
+  type RootQuery {
+    getSuppliers: [Supplier]
+    getSubjectInfoById(id: String!): Subject
+    
+    getSupplierInfoById(id: String!): Supplier
+    getSupplierInfoByName(name: String!): Supplier
 
-type Subject {
-  // ID fields
-  id_VdhVsapImportationAppNumber: String
-  id_SupplierSubject: String
+    getSubjects: [Subject]
 
-  // Date fields
-  date_SubjectArrival: _Date
-  date_Death: _Date
-  
-  supplier: Supplier
-  
-  // Meta fields
-  meta_Gender: VALUES_gender
-  meta_Race: VALUES_race
-  meta_Age: Int
-  meta_CauseOfDeath: String
-  meta_AshStatus: VALUES_ash_status
-  meta_Disposition: _disposition
-  meta_Usage: VALUES_usage
-  
-  notes: String
-  
-  // Measurement fields
-  measurement_Height: Int
-  measurement_Weight: Int
-}
-
-type Query {
-  subject: [Subject]
-  supplier: [Supplier]
-}
-
-schema {
-  query: Query
-}
-
+  }
 `;
 
-export default [enum_types, typeDefinitions];
+const SchemaDefinition = `
+  schema {
+    query: RootQuery
+  }
+`;
+
+export default makeExecutableSchema({
+  typeDefs: [SchemaDefinition, RootQuery, EnumTypes, Subject, Supplier],
+  resolvers: Resolvers
+});
