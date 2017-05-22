@@ -1,84 +1,36 @@
-const typeDefinitions = `
-scalar _vsap_importation_app_number
-scalar _Date
-scalar _id
+import { makeExecutableSchema } from 'graphql-tools';
+import Resolvers from '../resolvers/resolvers';
+import Subject from './subject';
+import Supplier from './supplier';
+import EnumTypes from './enum';
+import Activity from './activity';
+import Measurement from './measurement';
+import Metadata from './metadata';
+import ID from './id';
 
-enum _gender {
-  male
-  female
-}
+// # supplier(name: String): Supplier
 
-enum _race {
-  asian
-  black
-  caucasian
-  latino
-  other
-}
+const RootQuery = `
+  type RootQuery {
+    getSuppliers: [Supplier]
+    getSubjectInfoById(id: String!): Subject
 
-enum _ash_status {
-  return_ash
-  no_return_ash
-}
+    getSupplierInfoById(id: String!): Supplier
+    getSupplierInfoByName(name: String!): Supplier
 
-enum _disposition {
-  cremation
-  return_to_supplier
-}
+    getSubjects: [Subject]
 
-enum _usage {
-  cab
-  asl
-  dasl
-}
-
-type Supplier {
-  name: String
-  description: String
-  subjects: [String]
-}
-
-type Dates {
-  subject_arrival: _Date 
-  death: _Date
-}
-
-type id {
-  supplier_subject: String
-}
-
-type Subject {
-  vsap_importation_app_number: vsap_importation_app_number
-  date: Dates
-  supplier: Supplier
-  identification_numbers: _id
-  gender: _gender
-  race: _race
-  age: Int
-  cause_of_death: String
-  ash_status: _ash_status
-  disposition: _disposition
-  usage: _usage
-  notes: String
-  height: Int
-
-}
-
-type Body {
-  name: String
-  supplier: Supplier
-}
-
-type Query {
-  body: [Body]
-  subject: [Subject]
-  supplier: [Supplier]
-}
-
-schema {
-  query: Query
-}
-
+  }
 `;
 
-export default [typeDefinitions];
+const SchemaDefinition = `
+  schema {
+    query: RootQuery
+  }
+`;
+
+console.log("Compiling BioTrack GraphQL Schema...");
+export default makeExecutableSchema({
+  typeDefs: [SchemaDefinition, RootQuery, EnumTypes, Subject, Supplier, Activity, Measurement, Metadata, ID],
+  resolvers: Resolvers
+});

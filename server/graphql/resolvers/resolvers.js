@@ -1,32 +1,12 @@
-var GraphQLDate = require('graphql-date');
-var Supplier = require('../models/supplier');
-var Body = require('../models/body');
+import { merge } from 'lodash';
 
-const resolvers = {
-  Query: {
-    body() {
-      return Body.find().then((res) => res);
-    },
+import { subjectResolvers } from './subjectResolvers';
+import { supplierResolvers } from './supplierResolvers';
 
-    supplier() {
-      return Supplier.find().then((res) => res);
-    }
-  },
+const resolvers = merge(
+  subjectResolvers,
+  supplierResolvers
+)
 
-  Date: GraphQLDate,
-
-  Body: {
-    supplier(body) {
-      return Supplier.findById(body.supplier).then((res) => res);
-    }
-  },
-  Supplier: {
-    subjects(supplier) {
-      return Body.find({
-        supplier: supplier._id
-      }).then((res) => res);
-    }
-  }
-};
-
+console.log("Compiling BioTrack GraphQL Resolvers...");
 export default resolvers
