@@ -1,0 +1,16 @@
+<mz-navbar [navbarClass]="'blue white-text valign-wrapper'">
+  <mz-navbar-item-container [align]="'left'">
+    <mz-navbar-item><a href="javascript:void(0)" [id]="'btn-sidenav-demo'"><i mz-icon [icon]="'menu'" class="material-icons left"></i>BioTrack</a></mz-navbar-item>
+  </mz-navbar-item-container>
+</mz-navbar>
+
+<mz-sidenav
+  [id]="'sidenav-demo'"
+  [collapseButtonId]="'btn-sidenav-demo'">
+  <mz-sidenav-header>
+    <biotrack-sidenav-header></biotrack-sidenav-header>
+  </mz-sidenav-header>
+  <mz-sidenav-divider></mz-sidenav-divider>
+  <!-- <mz-sidenav-subheader>Link Subheader</mz-sidenav-subheader> -->
+  <biotrack-sidenav-sections></biotrack-sidenav-sections>
+</mz-sidenav>
