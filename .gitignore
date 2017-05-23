@@ -38,7 +38,7 @@ testem.log
 
 #System Files
 .DS_Store
-Thumbs.db
+Thumbs.dbnpm install materialize-css --savenpm install angular2-materialize --save
 
 #config files
 config.json
