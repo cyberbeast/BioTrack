@@ -1,8 +1,8 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # compiled output
-/dist
-/tmp
+/client/dist
+/client/tmp
 
 # dependencies
 server/node_modules
@@ -38,7 +38,7 @@ testem.log
 
 #System Files
 .DS_Store
-Thumbs.dbnpm install materialize-css --savenpm install angular2-materialize --save
+Thumbs.db
 
 #config files
 config.json
