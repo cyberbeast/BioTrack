@@ -4,6 +4,7 @@ import { graphqlExpress, graphiqlExpress } from 'graphql-server-express';
 import Schema from './graphql/schema/schema';
 import http from 'http';
 import mongoose from 'mongoose';
+const cors = require('cors');
 const config = require('./config.json');
 
 const port = config.GRAPHQL_PORT || process.env.PORT || '3000';
@@ -21,7 +22,19 @@ var app = express();
  */
 app.set('port', port);
 
-app.use('/graphql', bodyParser.json(), graphqlExpress({
+// Enable cors support for cross origin api requests (ONLY FOR DEV)
+app.use("/graphql", function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
+  if (req.method === 'OPTIONS') {
+    res.sendStatus(200);
+  } else {
+    next();
+  }
+});
+
+
+app.use('/graphql', cors(), bodyParser.json(), graphqlExpress({
   schema: Schema
 }));
 
