@@ -1,10 +1,24 @@
-// import { MaterializeModule } from 'angular2-materialize';
+import { MaterializeModule as MM } from 'angular2-materialize';
 import { MaterializeModule } from 'ng2-materialize';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+
+// APOLLO CLIENT IMOPRTS
+import { ApolloClient, createNetworkInterface } from 'apollo-client';
+import { ApolloModule } from 'apollo-angular';
+import { provideClient } from './apollo';
+
+// ngrx imports
+import { StoreModule } from '@ngrx/store';
+import { SuppliersService } from './common/services/suppliers.service';
+import { suppliers } from './common/stores/suppliers.store';
+import { selectedSupplier } from './common/stores/selectedSupplier.store';
+import { modes } from './common/stores/modes.store';
+import { selectedMode } from './common/stores/selectedMode.store';
+
 
 // DECLARATIONS
 import { AppComponent } from './app.component';
@@ -17,6 +31,8 @@ import { SuppliersComponent } from './suppliers/suppliers.component';
 import { routing } from './app.routes';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,13 +44,16 @@ import { DashboardComponent } from './dashboard/dashboard.component';
   ],
   imports: [
     MaterializeModule.forRoot(),
+    MM,
     BrowserAnimationsModule,
     BrowserModule,
     FormsModule,
     HttpModule,
-    routing
+    routing,
+    StoreModule.provideStore({suppliers, selectedSupplier}),
+    ApolloModule.forRoot(provideClient)
   ],
-  providers: [],
+  providers: [SuppliersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
