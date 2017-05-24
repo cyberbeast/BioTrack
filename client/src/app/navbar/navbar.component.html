@@ -1,12 +1,17 @@
-<mz-navbar [navbarClass]="'blue white-text valign-wrapper'">
-  <mz-navbar-item-container [align]="'left'">
-    <mz-navbar-item><a href="javascript:void(0)" [id]="'btn-sidenav-demo'"><i mz-icon [icon]="'menu'" class="material-icons left"></i>BioTrack</a></mz-navbar-item>
-  </mz-navbar-item-container>
-</mz-navbar>
-
+<mz-navbar [navbarClass]="'blue white-text'" >
+      <mz-navbar-item-container [align]="'left'">
+        <mz-navbar-item><a [id]="'btn-sidenav-left'"><i mz-icon [icon]="'menu'" class="material-icons left"></i>MENU</a></mz-navbar-item>
+      </mz-navbar-item-container>
+      <a href="javascript:void(0)" class="brand-logo center">BioTrack</a>
+      <mz-navbar-item-container [align]="'right'">
+        <mz-navbar-item><a [id]="'btn-sidenav-right'"><i mz-icon [icon]="'settings'" class="material-icons right">settings</i>&nbsp;</a></mz-navbar-item>
+      </mz-navbar-item-container>
+    </mz-navbar>
+    
 <mz-sidenav
-  [id]="'sidenav-demo'"
-  [collapseButtonId]="'btn-sidenav-demo'">
+  [id]="'sidenav-left'"
+  [collapseButtonId]="'btn-sidenav-left'"
+  [closeOnClick]="true">
   <mz-sidenav-header>
     <biotrack-sidenav-header></biotrack-sidenav-header>
   </mz-sidenav-header>
@@ -14,3 +19,20 @@
   <!-- <mz-sidenav-subheader>Link Subheader</mz-sidenav-subheader> -->
   <biotrack-sidenav-sections></biotrack-sidenav-sections>
 </mz-sidenav>
+
+<mz-sidenav
+    [id]="'sidenav-right'"
+    [collapseButtonId]="'btn-sidenav-right'"
+    [edge] ="'right'">
+    <mz-sidenav-header>
+      Sidenav header
+    </mz-sidenav-header>
+    <mz-sidenav-subheader>Link Subheader</mz-sidenav-subheader>
+    <mz-sidenav-link>
+      <a href="#">First Link</a>
+    </mz-sidenav-link>
+    <mz-sidenav-divider></mz-sidenav-divider>
+    <mz-sidenav-link>
+      <a href="#" class="waves-effect">Second Link With Waves</a>
+    </mz-sidenav-link>
+  </mz-sidenav>
