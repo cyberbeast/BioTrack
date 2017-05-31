@@ -1,3 +1,54 @@
-<p>
-  suppliers works!
-</p>
+<!-- <mz-card
+  [backgroundClass]="'blue'"
+  [textClass]="'white-text'">
+  <mz-card-content>
+        <a href="#!" class="breadcrumb">First</a>
+        <a href="#!" class="breadcrumb">Second</a>
+        <a href="#!" class="breadcrumb">Third</a>
+
+  </mz-card-content>
+
+</mz-card> -->
+
+<!-- <div class="chips" materialize="material_chip" [materializeParams]="[autocompleteInit]" (chip.add)="add($event.detail)" (chip.delete)="delete($event.detail)" (chip.select)="select($event.detail)"></div> -->
+
+<!-- <pre *ngFor="let sup of suppliers | async">
+  {{sup | json}}
+</pre> -->
+<div class="row">
+
+  <div class="col s3" style="overflow-y: auto; height: 90vh;">
+    <!-- Master template-->
+    <biotrack-suppliers-master
+      [suppliers]="suppliers">
+    </biotrack-suppliers-master>
+  </div>
+
+  <div class="col s9">
+    <!-- Detail template -->
+    <biotrack-suppliers-detail
+      [suppliers]="suppliers">
+    </biotrack-suppliers-detail>
+  </div>
+
+</div>
+
+<!-- <button (click)="printval()">check</button> -->
+<!-- <ngx-datatable
+        class="material fullscreen"
+        style="top: 52px"
+        [columnMode]="'force'"
+        [headerHeight]="50"
+        [footerHeight]="0"
+        [rowHeight]="50"
+        [scrollbarV]="true"
+        [scrollbarH]="true"
+        [rows]="suppliers | async">
+        <ngx-datatable-column name="Id" [width]="80"></ngx-datatable-column>
+        <ngx-datatable-column name="Name" [width]="300"></ngx-datatable-column>
+        <ngx-datatable-column name="Gender"></ngx-datatable-column>
+        <ngx-datatable-column name="Age"></ngx-datatable-column>
+        <ngx-datatable-column name="City" [width]="300" prop="address.city"></ngx-datatable-column>
+        <ngx-datatable-column name="Description" [width]="300" prop="description"></ngx-datatable-column>
+      </ngx-datatable> -->
+<!-- <ng2-smart-table class="striped" [settings]="settings" [source]="suppliers | async"></ng2-smart-table> -->
