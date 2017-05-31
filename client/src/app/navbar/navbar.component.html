@@ -1,13 +1,38 @@
-<mz-navbar [navbarClass]="'blue white-text'" >
-      <mz-navbar-item-container [align]="'left'">
-        <mz-navbar-item><a [id]="'btn-sidenav-left'"><i mz-icon [icon]="'menu'" class="material-icons left"></i>MENU</a></mz-navbar-item>
-      </mz-navbar-item-container>
-      <a href="javascript:void(0)" class="brand-logo center">BioTrack</a>
-      <mz-navbar-item-container [align]="'right'">
-        <mz-navbar-item><a [id]="'btn-sidenav-right'"><i mz-icon [icon]="'settings'" class="material-icons right">settings</i>&nbsp;</a></mz-navbar-item>
-      </mz-navbar-item-container>
-    </mz-navbar>
-    
+<div class="navbar-fixed">
+<mz-navbar [navbarClass]="'blue-grey darken-2 white-text'" >
+  <mz-navbar-item-container [align]="'left'">
+    <mz-navbar-item>
+      <a [id]="'btn-sidenav-left'">
+        <i
+          mz-icon
+          mz-tooltip
+          [icon]="'menu'"
+          [tooltip]="'Pull Menu'"
+          class="material-icons left">menu
+        </i>
+      </a>
+    </mz-navbar-item>
+
+  </mz-navbar-item-container>
+
+  <a href="javascript:void(0)" class="brand-logo center">BioTrack</a>
+
+  <mz-navbar-item-container [align]="'right'">
+    <mz-navbar-item>
+      <a (click)="fullscreen()">
+        <i
+          mz-icon mz-tooltip
+          [icon]="'fullscreen'"
+          [tooltip]="'Fullscreen Mode'"
+          class="material-icons right">menu
+        </i>
+      </a>
+    </mz-navbar-item>
+    <mz-navbar-item><a [id]="'btn-sidenav-right'"><i mz-icon [icon]="'apps'" class="material-icons right">menu</i></a></mz-navbar-item>
+  </mz-navbar-item-container>
+</mz-navbar>
+</div>
+
 <mz-sidenav
   [id]="'sidenav-left'"
   [collapseButtonId]="'btn-sidenav-left'"
