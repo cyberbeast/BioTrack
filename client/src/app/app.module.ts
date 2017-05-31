@@ -6,6 +6,12 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
+import { Ng2SmartTableModule } from 'ng2-smart-table';
+// import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import {AgGridModule} from "ag-grid-angular/main";
+import {DataTableModule,SharedModule} from 'primeng/primeng';
+
+
 // APOLLO CLIENT IMOPRTS
 import { ApolloClient, createNetworkInterface } from 'apollo-client';
 import { ApolloModule } from 'apollo-angular';
@@ -30,6 +36,9 @@ import { SuppliersComponent } from './suppliers/suppliers.component';
 // ROUTING DECLARATIONS
 import { routing } from './app.routes';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { SuppliersMasterComponent } from './suppliers/suppliers-master/suppliers-master.component';
+import { SuppliersDetailComponent } from './suppliers/suppliers-detail/suppliers-detail.component';
+import {RedComponentComponent} from "./suppliers/suppliers-detail/red-comp.component";
 
 
 
@@ -40,18 +49,28 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     SidenavHeaderComponent,
     SidenavSectionsComponent,
     SuppliersComponent,
-    DashboardComponent
+    DashboardComponent,
+    SuppliersMasterComponent,
+    SuppliersDetailComponent,
+    RedComponentComponent
   ],
   imports: [
     MaterializeModule.forRoot(),
     MM,
+    // NgxDatatableModule,
+    Ng2SmartTableModule,
     BrowserAnimationsModule,
     BrowserModule,
     FormsModule,
     HttpModule,
     routing,
+    DataTableModule,
+    SharedModule,
     StoreModule.provideStore({suppliers, selectedSupplier}),
-    ApolloModule.forRoot(provideClient)
+    ApolloModule.forRoot(provideClient),
+    AgGridModule.withComponents(
+            [RedComponentComponent]
+        )
   ],
   providers: [SuppliersService],
   bootstrap: [AppComponent]
