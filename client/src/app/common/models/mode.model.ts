@@ -1,5 +1,5 @@
 export interface Mode {
   name: string;
-  path: string;
+  path?: string;
   description?: string;
 }
