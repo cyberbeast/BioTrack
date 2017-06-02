@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SidenavHeaderComponent } from './sidenav-header.component';
+import { NavbarSectionsComponent } from './navbar-sections.component';
 
-describe('SidenavHeaderComponent', () => {
-  let component: SidenavHeaderComponent;
-  let fixture: ComponentFixture<SidenavHeaderComponent>;
+describe('NavbarSectionsComponent', () => {
+  let component: NavbarSectionsComponent;
+  let fixture: ComponentFixture<NavbarSectionsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SidenavHeaderComponent ]
+      declarations: [ NavbarSectionsComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SidenavHeaderComponent);
+    fixture = TestBed.createComponent(NavbarSectionsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

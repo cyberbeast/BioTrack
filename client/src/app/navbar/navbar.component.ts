@@ -14,22 +14,46 @@ import { Mode } from '../common/models/mode.model';
 })
 export class NavbarComponent implements OnInit {
 
+  fullscreenBool = false;
   selectedMode: Observable<string>;
+  sections = [
+    {
+      'name': 'Suppliers',
+      'routerLink': '/suppliers',
+      'active': false
+    },
+    {
+      'name': 'Subjects',
+      'routerLink': '/suppliers',
+      'active': false
+    },
+    {
+      'name': 'Inventory',
+      'routerLink': '/suppliers',
+      'active': false
+    }
+  ]
 
   fullscreen() {
     if (screenfull.enabled) {
-            screenfull.toggle();
+      // console.log("isFullscreen " + screenfull.isFullscreen);
+      this.fullscreenBool = this.fullscreenBool ? false : true; 
+      screenfull.toggle();
     }
   }
 
-  tempMode: string = 'a';
+  setNewMode(mode) {
+    this.modesService.setMode(mode.toLowerCase());
+  }
 
-  isActive(mode) {
-    if (mode ===  this.tempMode){
-      return true;
-    }
-    else {
-      return false;
+  updateActiveProperty(mode, sections){
+    for (var i=0; i < this.sections.length; i++) {
+      if (sections[i].name.toLowerCase() === mode) {
+        sections[i].active = true;
+      }
+      else {
+        sections[i].active = false;
+      }
     }
   }
 
@@ -38,7 +62,9 @@ export class NavbarComponent implements OnInit {
     private store: Store<AppStore>
   ) {
     this.selectedMode = store.select('selectedMode');
-    this.selectedMode.subscribe(v => this.tempMode = v);
+    this.selectedMode.subscribe(v => {
+      this.updateActiveProperty(v, this.sections);
+    });
 
   }
 

@@ -1,0 +1,5 @@
+<div class="header-nav">
+    <a *ngFor="let section of sections" href="" [routerLink]="section.routerLink" class="nav-link" [class.active]="section.active" (click)="this.newMode.emit(section.name)">
+      <span class="nav-text">{{section.name}}</span>
+    </a>
+</div>
