@@ -6,10 +6,15 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
+import { ClarityModule } from "clarity-angular";
+
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 // import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import {AgGridModule} from "ag-grid-angular/main";
 import {DataTableModule,SharedModule} from 'primeng/primeng';
+import {ScrollToModule} from 'ng2-scroll-to';
+import {TabViewModule} from 'primeng/primeng';
+import {Ng2PageScrollModule} from 'ng2-page-scroll';
 
 
 // APOLLO CLIENT IMOPRTS
@@ -20,10 +25,11 @@ import { provideClient } from './apollo';
 // ngrx imports
 import { StoreModule } from '@ngrx/store';
 import { SuppliersService } from './common/services/suppliers.service';
-import { suppliers } from './common/stores/suppliers.store';
+import { suppliersReducer } from './common/stores/suppliers.store';
 import { selectedSupplier } from './common/stores/selectedSupplier.store';
+import { ModesService } from './common/services/modes.service';
 import { modes } from './common/stores/modes.store';
-import { selectedMode } from './common/stores/selectedMode.store';
+import { selectedModeReducer } from './common/stores/selectedMode.store';
 
 
 // DECLARATIONS
@@ -38,7 +44,7 @@ import { routing } from './app.routes';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SuppliersMasterComponent } from './suppliers/suppliers-master/suppliers-master.component';
 import { SuppliersDetailComponent } from './suppliers/suppliers-detail/suppliers-detail.component';
-import {RedComponentComponent} from "./suppliers/suppliers-detail/red-comp.component";
+import { RedComponentComponent } from "./suppliers/suppliers-detail/red-comp.component";
 
 
 
@@ -60,19 +66,29 @@ import {RedComponentComponent} from "./suppliers/suppliers-detail/red-comp.compo
     // NgxDatatableModule,
     Ng2SmartTableModule,
     BrowserAnimationsModule,
+    ClarityModule.forRoot(),
+    Ng2PageScrollModule.forRoot(),
     BrowserModule,
     FormsModule,
     HttpModule,
     routing,
     DataTableModule,
     SharedModule,
-    StoreModule.provideStore({suppliers, selectedSupplier}),
+    StoreModule.provideStore({
+      suppliers: suppliersReducer,
+      selectedMode: selectedModeReducer,
+    }),
     ApolloModule.forRoot(provideClient),
+    ScrollToModule.forRoot(),
+    TabViewModule,
     AgGridModule.withComponents(
             [RedComponentComponent]
         )
   ],
-  providers: [SuppliersService],
+  providers: [
+    SuppliersService,
+    ModesService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
