@@ -1,63 +1,24 @@
-<div class="navbar-fixed">
-<mz-navbar [navbarClass]="'blue-grey darken-2 white-text'" >
-  <mz-navbar-item-container [align]="'left'">
-    <mz-navbar-item>
-      <a [id]="'btn-sidenav-left'">
-        <i
-          mz-icon
-          mz-tooltip
-          [icon]="'menu'"
-          [tooltip]="'Pull Menu'"
-          class="material-icons left">menu
-        </i>
-      </a>
-    </mz-navbar-item>
-
-  </mz-navbar-item-container>
-
-  <a href="javascript:void(0)" class="brand-logo center">BioTrack</a>
-
-  <mz-navbar-item-container [align]="'right'">
-    <mz-navbar-item>
-      <a (click)="fullscreen()">
-        <i
-          mz-icon mz-tooltip
-          [icon]="'fullscreen'"
-          [tooltip]="'Fullscreen Mode'"
-          class="material-icons right">menu
-        </i>
-      </a>
-    </mz-navbar-item>
-    <mz-navbar-item><a [id]="'btn-sidenav-right'"><i mz-icon [icon]="'apps'" class="material-icons right">menu</i></a></mz-navbar-item>
-  </mz-navbar-item-container>
-</mz-navbar>
-</div>
-
-<mz-sidenav
-  [id]="'sidenav-left'"
-  [collapseButtonId]="'btn-sidenav-left'"
-  [closeOnClick]="true">
-  <mz-sidenav-header>
-    <biotrack-sidenav-header></biotrack-sidenav-header>
-  </mz-sidenav-header>
-  <mz-sidenav-divider></mz-sidenav-divider>
-  <!-- <mz-sidenav-subheader>Link Subheader</mz-sidenav-subheader> -->
-  <biotrack-sidenav-sections></biotrack-sidenav-sections>
-</mz-sidenav>
-
-<mz-sidenav
-    [id]="'sidenav-right'"
-    [collapseButtonId]="'btn-sidenav-right'"
-    [edge] ="'right'">
-    <mz-sidenav-header>
-      Sidenav header
-    </mz-sidenav-header>
-    <mz-sidenav-subheader>Link Subheader</mz-sidenav-subheader>
-    <mz-sidenav-link>
-      <a href="#">First Link</a>
-    </mz-sidenav-link>
-    <mz-sidenav-divider></mz-sidenav-divider>
-    <mz-sidenav-link>
-      <a href="#" class="waves-effect">Second Link With Waves</a>
-    </mz-sidenav-link>
-  </mz-sidenav>
+<header class="header-6">
+    <div class="branding">
+        <a href="..." class="nav-link">
+            <clr-icon shape="vm-bug"></clr-icon>
+            <span class="title">BioTrack</span>
+        </a>
+    </div>
+    <div class="header-nav">
+        <a href="" [routerLink]="['/suppliers']" class="nav-link" [class.active]="isActive('suppliers')" (click)="this.modesService.setMode('suppliers')">
+          <span class="nav-text">Suppliers</span>
+        </a>
+        <a href="" [routerLink]="['/suppliers']" class="nav-link" [class.active]="isActive('subjects')" (click)="this.modesService.setMode('subjects')">
+          <span class="nav-text">Subjects</span>
+        </a>
+        <a href="" [routerLink]="['/suppliers']" class="nav-link" [class.active]="isActive('inventory')" (click)="this.modesService.setMode('inventory')">
+          <span class="nav-text">Inventory</span>
+        </a>
+    </div>
+    <div class="header-actions">
+        <a class="nav-link nav-icon" (click)="fullscreen()">
+            <clr-icon shape="cog"></clr-icon>
+        </a>
+    </div>
+</header>
