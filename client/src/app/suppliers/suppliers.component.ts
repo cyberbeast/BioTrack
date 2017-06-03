@@ -17,6 +17,7 @@ export class SuppliersComponent implements OnInit {
 
   suppliers: Observable<Array<Supplier>>;
   selectedSupplier: Observable<Supplier>;
+  activeSupplier: string;
 
   constructor(
     private suppliersService: SuppliersService,
@@ -27,8 +28,15 @@ export class SuppliersComponent implements OnInit {
     suppliersService.loadSuppliers();
     this.suppliers =  store.select('suppliers');
     this.selectedSupplier = store.select('selectedSupplier');
-    this.selectedSupplier.subscribe(v => console.log("selectedSupplier is: " + v));
+    this.selectedSupplier.subscribe(v => {
+      console.log("selectedSupplier is: " + JSON.stringify(v));
+      this.activeSupplier = v.name;
+    });
 
+  }
+
+  selectSupplier(supplier) {
+    this.suppliersService.selectSupplier(supplier);
   }
 
   settings = {
@@ -58,12 +66,6 @@ export class SuppliersComponent implements OnInit {
     }
   };
 
-  printval() {
-    this.suppliers.forEach((sup) => {
-      console.log(JSON.stringify(sup));
-    })
-    // console.log(this.suppliers);
-  }
   add(chip) {
     if (this.supplier_fields.hasOwnProperty(chip.tag)){
       console.log("Chip added: " + chip.tag);

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'biotrack-suppliers-master',
@@ -9,6 +9,8 @@ import { Component, OnInit, Input } from '@angular/core';
 export class SuppliersMasterComponent implements OnInit {
 
   @Input() suppliers;
+  @Input() activeSupplier;
+  @Output() selectedSupplier = new EventEmitter();
   constructor() { }
 
   ngOnInit() {
