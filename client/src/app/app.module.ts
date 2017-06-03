@@ -16,6 +16,9 @@ import {ScrollToModule} from 'ng2-scroll-to';
 import {TabViewModule} from 'primeng/primeng';
 import {Ng2PageScrollModule} from 'ng2-page-scroll';
 
+// CLIPBOARD
+import { ClipboardModule } from 'ngx-clipboard';
+
 
 // APOLLO CLIENT IMOPRTS
 import { ApolloClient, createNetworkInterface } from 'apollo-client';
@@ -26,7 +29,7 @@ import { provideClient } from './apollo';
 import { StoreModule } from '@ngrx/store';
 import { SuppliersService } from './common/services/suppliers.service';
 import { suppliersReducer } from './common/stores/suppliers.store';
-import { selectedSupplier } from './common/stores/selectedSupplier.store';
+import { selectedSupplierReducer } from './common/stores/selectedSupplier.store';
 import { ModesService } from './common/services/modes.service';
 import { modes } from './common/stores/modes.store';
 import { selectedModeReducer } from './common/stores/selectedMode.store';
@@ -44,6 +47,7 @@ import { SuppliersMasterComponent } from './suppliers/suppliers-master/suppliers
 import { SuppliersDetailComponent } from './suppliers/suppliers-detail/suppliers-detail.component';
 import { RedComponentComponent } from "./suppliers/suppliers-detail/red-comp.component";
 import { NavbarSectionsComponent } from './navbar/navbar-sections/navbar-sections.component';
+import { SuppliersDetailsSubjectsTabComponent } from './suppliers/suppliers-detail/suppliers-details-subjects-tab/suppliers-details-subjects-tab.component';
 
 
 
@@ -56,7 +60,8 @@ import { NavbarSectionsComponent } from './navbar/navbar-sections/navbar-section
     SuppliersMasterComponent,
     SuppliersDetailComponent,
     RedComponentComponent,
-    NavbarSectionsComponent
+    NavbarSectionsComponent,
+    SuppliersDetailsSubjectsTabComponent
   ],
   imports: [
     MaterializeModule.forRoot(),
@@ -70,11 +75,13 @@ import { NavbarSectionsComponent } from './navbar/navbar-sections/navbar-section
     FormsModule,
     HttpModule,
     routing,
+    ClipboardModule,
     DataTableModule,
     SharedModule,
     StoreModule.provideStore({
       suppliers: suppliersReducer,
       selectedMode: selectedModeReducer,
+      selectedSupplier: selectedSupplierReducer
     }),
     ApolloModule.forRoot(provideClient),
     ScrollToModule.forRoot(),
