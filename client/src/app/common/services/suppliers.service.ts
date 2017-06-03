@@ -16,22 +16,33 @@ import {Supplier} from '../models/supplier.model';
 const getSuppliers = gql`
   query getSuppliers {
     getSuppliers {
+      _id
       name
       description
     }
   }
 `;
 
+const getSubjectsBySupplierId = gql`
+  query getSubjectsBySupplierId {
+    getSuppliers {
+      subjects
+    }
+  }
+`
+
 
 @Injectable()
 export class SuppliersService {
   suppliers$: Observable<Array<Supplier>>;
+  selectedSupplier$: Observable<Supplier>;
 
   constructor(
     private apollo: Apollo,
     private store: Store<AppStore>
   ) {
     this.suppliers$ = store.select('suppliers');
+    this.selectedSupplier$ = store.select('selectedSupplier');
   }
 
   loadSuppliers() {
@@ -45,5 +56,11 @@ export class SuppliersService {
     });
   }
 
-
+  selectSupplier(newSupplier: Supplier) {
+    console.log("Selecting new supplier: " + JSON.stringify(newSupplier));
+    this.store.dispatch({
+      type: 'SELECT_SUPPLIER',
+      payload: newSupplier
+    });
+  }
 }
