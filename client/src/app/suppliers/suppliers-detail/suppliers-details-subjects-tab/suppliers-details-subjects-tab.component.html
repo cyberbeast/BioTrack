@@ -1,10 +1,11 @@
 <div class="row">
   <div class="col-xs-12 col-sm-4">
-      <div class="card">
-          <div class="card-block">
-              <h4 class="card-title">Subjects</h4>
-              <p class="card-text">...</p>
-          </div>
+    <a role="tooltip" aria-haspopup="true" class="tooltip tooltip-sm card clickable" ngxClipboard [cbContent]="subject._id" *ngFor="let subject of subjectsBySelectedSupplier">
+      <span class="tooltip-content">Click to copy ID.</span>
+      <div class="card-block">
+        <h4 class="card-title">ID</h4>
+        <p class="card-text">{{subject._id}}</p>
       </div>
+    </a>
   </div>
 </div>

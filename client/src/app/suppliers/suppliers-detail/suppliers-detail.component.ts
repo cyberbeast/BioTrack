@@ -7,6 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class SuppliersDetailComponent implements OnInit {
   @Input() selectedSupplier;
+  @Input() subjectsBySelectedSupplier;
 
   name: string;
   description: string;

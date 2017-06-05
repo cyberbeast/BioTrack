@@ -7,8 +7,8 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class SuppliersDetailsSubjectsTabComponent implements OnInit {
 
-  @Input() id;
-  
+  @Input() subjectsBySelectedSupplier;
+
   constructor() { }
 
   ngOnInit() {
