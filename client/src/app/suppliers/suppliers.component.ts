@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from "rxjs/Observable";
+import { Subscription } from 'rxjs/Subscription';
 import { Store } from '@ngrx/store';
 import { SuppliersService } from '../common/services/suppliers.service';
 import { AppStore } from '../common/models/appstore.model';
@@ -18,6 +19,8 @@ export class SuppliersComponent implements OnInit {
   suppliers: Observable<Array<Supplier>>;
   selectedSupplier: Observable<Supplier>;
   activeSupplier: string;
+  subjectsBySelectedSupplier: string[];
+  subscription: Subscription;
 
   constructor(
     private suppliersService: SuppliersService,
@@ -31,6 +34,11 @@ export class SuppliersComponent implements OnInit {
     this.selectedSupplier.subscribe(v => {
       console.log("selectedSupplier is: " + JSON.stringify(v));
       this.activeSupplier = v.name;
+    });
+
+    this.subscription = this.suppliersService.getSubjectsBySelectedSupplier().subscribe((subjects) => {
+      // console.log("Got subjects for supplier " + subjects);
+      this.subjectsBySelectedSupplier = subjects;
     });
 
   }
