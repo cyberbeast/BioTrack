@@ -2,6 +2,7 @@ import {Http, Headers} from '@angular/http';
 import {Injectable} from '@angular/core';
 import {Store} from '@ngrx/store';
 import {Observable} from "rxjs/Observable";
+import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/map';
 
 // APOLLO CLIENT IMPORTS
@@ -24,9 +25,11 @@ const getSuppliers = gql`
 `;
 
 const getSubjectsBySupplierId = gql`
-  query getSubjectsBySupplierId {
-    getSuppliers {
-      subjects
+  query getSubjectsBySupplierId($id: String!) {
+    getSupplierInfoById(id: $id) {
+      subjects {
+        _id
+      }
     }
   }
 `
@@ -34,8 +37,9 @@ const getSubjectsBySupplierId = gql`
 
 @Injectable()
 export class SuppliersService {
-  suppliers$: Observable<Array<Supplier>>;
-  selectedSupplier$: Observable<Supplier>;
+  private suppliers$: Observable<Array<Supplier>>;
+  private selectedSupplier$: Observable<Supplier>;
+  private subjectsBySelectedSupplier$ = new Subject<Array<any>>();
 
   constructor(
     private apollo: Apollo,
@@ -62,5 +66,22 @@ export class SuppliersService {
       type: 'SELECT_SUPPLIER',
       payload: newSupplier
     });
+
+    this.selectedSupplier$.subscribe(v => {
+      console.log("SUPPLIER SERVICE: Fetching subjects for Supplier with id - " + v._id);
+      this.apollo.watchQuery<any>({
+        query: getSubjectsBySupplierId,
+        variables: {
+          id: v._id
+        }
+      }).subscribe(({data}) => {
+        // console.log("Subjects for this supplier are: " + JSON.stringify(data));
+        this.subjectsBySelectedSupplier$.next(data.getSupplierInfoById.subjects)
+      });
+    });
+  }
+
+  getSubjectsBySelectedSupplier(): Observable<any> {
+    return this.subjectsBySelectedSupplier$.asObservable();
   }
 }
