@@ -15,12 +15,12 @@ export function suppliersReducer(state: any = [], action: Action) {
 
 		case UPDATE_SUPPLIER:
       return state.map(supplier => {
-        return supplier.id === action.payload.id ? Object.assign({}, supplier, action.payload) : supplier;
+        return supplier._id === action.payload._id ? Object.assign({}, supplier, action.payload) : supplier;
       });
 
     case DELETE_SUPPLIER:
       return state.filter(item => {
-        return item.id !== action.payload.id;
+        return item._id !== action.payload._id;
       });
 
 		default:

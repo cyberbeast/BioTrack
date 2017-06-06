@@ -1,8 +1,13 @@
 import { Supplier } from './supplier.model';
+import { Subject } from './subject.model';
 // import { Mode } from ',/mode.model';
 
 export interface AppStore {
-  selectedMode: String;
+  selectedMode: string;
+
   suppliers: Supplier[];
   selectedSupplier: Supplier;
+
+  subjects: Subjects[];
+  selectedSubject: Subject;
 };
