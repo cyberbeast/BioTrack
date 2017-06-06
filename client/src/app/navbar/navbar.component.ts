@@ -24,7 +24,7 @@ export class NavbarComponent implements OnInit {
     },
     {
       'name': 'Subjects',
-      'routerLink': '/suppliers',
+      'routerLink': '/subjects',
       'active': false
     },
     {
@@ -37,7 +37,7 @@ export class NavbarComponent implements OnInit {
   fullscreen() {
     if (screenfull.enabled) {
       // console.log("isFullscreen " + screenfull.isFullscreen);
-      this.fullscreenBool = this.fullscreenBool ? false : true; 
+      this.fullscreenBool = this.fullscreenBool ? false : true;
       screenfull.toggle();
     }
   }

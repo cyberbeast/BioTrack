@@ -8,7 +8,7 @@ import { Supplier } from '../common/models/supplier.model';
 import { LocalDataSource } from 'ng2-smart-table';
 
 @Component({
-  selector: 'app-suppliers',
+  selector: 'biotrack-suppliers',
   templateUrl: './suppliers.component.html',
   styleUrls: ['./suppliers.component.css'],
 })
