@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { SuppliersComponent } from './suppliers/suppliers.component';
 import { SuppliersDetailComponent } from './suppliers/suppliers-detail/suppliers-detail.component'
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { SubjectsComponent } from './subjects/subjects.component';
 
 // ROUTE CONFIGURATION
 export const routes: Routes = [
@@ -19,6 +20,10 @@ export const routes: Routes = [
   {
     path: 'suppliers',
     component: SuppliersComponent
+  },
+  {
+    path: 'subjects',
+    component: SubjectsComponent
   }
 ];
 

@@ -27,9 +27,14 @@ import { provideClient } from './apollo';
 
 // ngrx imports
 import { StoreModule } from '@ngrx/store';
+
+import { SubjectsService } from './common/services/subjects.service';
+import { subjectsReducer } from './common/stores/subjects.store';
+
 import { SuppliersService } from './common/services/suppliers.service';
 import { suppliersReducer } from './common/stores/suppliers.store';
 import { selectedSupplierReducer } from './common/stores/selectedSupplier.store';
+
 import { ModesService } from './common/services/modes.service';
 import { modes } from './common/stores/modes.store';
 import { selectedModeReducer } from './common/stores/selectedMode.store';
@@ -48,6 +53,9 @@ import { SuppliersDetailComponent } from './suppliers/suppliers-detail/suppliers
 import { RedComponentComponent } from "./suppliers/suppliers-detail/red-comp.component";
 import { NavbarSectionsComponent } from './navbar/navbar-sections/navbar-sections.component';
 import { SuppliersDetailsSubjectsTabComponent } from './suppliers/suppliers-detail/suppliers-details-subjects-tab/suppliers-details-subjects-tab.component';
+import { SubjectsComponent } from './subjects/subjects.component';
+import { SubjectsMasterComponent } from './subjects/subjects-master/subjects-master.component';
+import { SubjectsDetailComponent } from './subjects/subjects-detail/subjects-detail.component';
 
 
 
@@ -61,7 +69,10 @@ import { SuppliersDetailsSubjectsTabComponent } from './suppliers/suppliers-deta
     SuppliersDetailComponent,
     RedComponentComponent,
     NavbarSectionsComponent,
-    SuppliersDetailsSubjectsTabComponent
+    SuppliersDetailsSubjectsTabComponent,
+    SubjectsComponent,
+    SubjectsMasterComponent,
+    SubjectsDetailComponent
   ],
   imports: [
     MaterializeModule.forRoot(),
@@ -91,6 +102,7 @@ import { SuppliersDetailsSubjectsTabComponent } from './suppliers/suppliers-deta
         )
   ],
   providers: [
+    SubjectsService,
     SuppliersService,
     ModesService
   ],
