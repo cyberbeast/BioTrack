@@ -1,0 +1,14 @@
+<div class="row flex-items-xs-center">
+  <form class="search">
+    <label for="search_input">
+      <input id="search_input" type="text" placeholder="Search by ID">
+    </label>
+  </form>
+</div>
+<section class="nav-group">
+  <ul class="nav-list" *ngFor="let subject of subjects | async">
+    <li><a class="nav-link">{{subject._id}}</a></li>
+  </ul>
+</section>
+
+<!-- [class.active]="supplier.name==activeSupplier" (click)="this.selectedSupplier.emit(supplier)" -->
