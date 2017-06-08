@@ -13,19 +13,31 @@ import gql from 'graphql-tag';
 import { AppStore } from '../models/appstore.model';
 import { Subject } from '../models/subject.model';
 
-// QUERIES
+// QUERIES & FRAGMENT IMPORTS
+import { fragmentMeasurementsOnSubject } from './fragments/measurementsOnSubject.fragment';
+import { fragmentIdentificationsOnSubject } from './fragments/identificationsOnSubject.fragment';
+import { fragmentMetadataOnSubject } from './fragments/metadataOnSubject.fragment';
+import { fragmentSupplierOnSubject } from './fragments/supplierOnSubject.fragment';
+import { fragmentActivityLogOnSubject } from './fragments/activitylogOnSubject.fragment';
+
 const getSubjects = gql`
   query getSubjects {
     getSubjects {
       _id
       notes
-      identifications
-      metadata
-      measurements
-      supplier
-      activity_log
+      ...Identifications
+      ...Metadata
+      ...Measurements
+      ...Supplier
+      ...ActivityLog
     }
   }
+  ${fragmentMeasurementsOnSubject}
+  ${fragmentIdentificationsOnSubject}
+  ${fragmentMetadataOnSubject}
+  ${fragmentSupplierOnSubject}
+  ${fragmentActivityLogOnSubject}
+
 `
 
 @Injectable()
@@ -38,17 +50,26 @@ export class SubjectsService {
     private store: Store<AppStore>
   ) {
     this.subjects$ = store.select('subjects');
-    // this.selectedSubject$ = store.select('selectedSubject');
+    this.selectedSubject$ = store.select('selectedSubject');
   }
 
   loadSubjects() {
     this.apollo.watchQuery<any>({
       query: getSubjects
     }).subscribe(({data}) => {
+      // console.log(JSON.stringify(data.getSubjects));
       this.store.dispatch({
         type: 'ADD_SUBJECTS',
-        payload: data['getSubjects']
+        payload: data.getSubjects
       });
+    });
+  }
+
+  selectSubject(newSubject: Subject) {
+    console.log("Selecting new subject: " + JSON.stringify(newSubject));
+    this.store.dispatch({
+      type: 'SELECT_SUBJECT',
+      payload: newSubject
     });
   }
 }

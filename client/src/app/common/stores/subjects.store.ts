@@ -8,6 +8,7 @@ export const DELETE_SUBJECT = 'DELETE_SUBJECT';
 export function subjectsReducer(state: any = [], action: Action) {
   switch (action.type) {
     case ADD_SUBJECTS:
+      // console.log(JSON.stringify(action.payload));
       return action.payload;
 
     case CREATE_SUBJECT:

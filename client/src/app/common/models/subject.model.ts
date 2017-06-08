@@ -23,7 +23,7 @@ export interface Subject {
     meta_Usage: string;
   };
 
-  measurements?: object;
+  measurements: object;
 
   supplier: Supplier;
 

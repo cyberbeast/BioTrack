@@ -8,6 +8,6 @@ export interface AppStore {
   suppliers: Supplier[];
   selectedSupplier: Supplier;
 
-  subjects: Subjects[];
+  subjects: Subject[];
   selectedSubject: Subject;
 };
