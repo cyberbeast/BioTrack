@@ -11,6 +11,7 @@ export class SuppliersMasterComponent implements OnInit {
   @Input() suppliers;
   @Input() activeSupplier;
   @Output() selectedSupplier = new EventEmitter();
+  
   constructor() { }
 
   ngOnInit() {

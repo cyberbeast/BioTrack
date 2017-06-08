@@ -1,10 +1,18 @@
 import { Component, OnInit } from '@angular/core';
+
+// rxjs imports
 import { Observable } from "rxjs/Observable";
 import { Subscription } from 'rxjs/Subscription';
+
+// ngrx store import
 import { Store } from '@ngrx/store';
+
+// supplier service, models import
 import { SuppliersService } from '../common/services/suppliers.service';
 import { AppStore } from '../common/models/appstore.model';
 import { Supplier } from '../common/models/supplier.model';
+
+// table imports
 import { LocalDataSource } from 'ng2-smart-table';
 
 @Component({
