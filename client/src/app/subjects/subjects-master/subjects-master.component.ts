@@ -8,6 +8,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class SubjectsMasterComponent implements OnInit {
 
   @Input() subjects;
+  @Input() activeSubjectId;
+  @Output() selectedSubject = new EventEmitter();
 
   constructor() { }
 
