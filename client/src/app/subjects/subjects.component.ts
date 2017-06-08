@@ -20,6 +20,8 @@ import { Subject } from '../common/models/subject.model';
 export class SubjectsComponent implements OnInit {
 
   subjects: Observable<Array<Subject>>;
+  selectedSubject: Observable<Subject>;
+  activeSubjectId: string;
 
   constructor(
     private subjectsService: SubjectsService,
@@ -27,9 +29,21 @@ export class SubjectsComponent implements OnInit {
   ) {
     subjectsService.loadSubjects();
     this.subjects = store.select('subjects');
+    this.selectedSubject = store.select('selectedSubject');
+    this.selectedSubject.subscribe(v => {
+      // console.log("selectedSubject is: " + JSON.stringify(v));
+      this.activeSubjectId = v._id;
+      // console.log(this.activeSubjectId);
+    });
+  }
+
+  selectSubject(subject) {
+    this.subjectsService.selectSubject(subject);
   }
 
   ngOnInit() {
+    // this.subjectsService.loadSubjects();
+
   }
 
 }
