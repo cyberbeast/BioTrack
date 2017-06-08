@@ -30,6 +30,7 @@ import { StoreModule } from '@ngrx/store';
 
 import { SubjectsService } from './common/services/subjects.service';
 import { subjectsReducer } from './common/stores/subjects.store';
+import { selectedSubjectReducer } from './common/stores/selectedSubject.store';
 
 import { SuppliersService } from './common/services/suppliers.service';
 import { suppliersReducer } from './common/stores/suppliers.store';
@@ -38,7 +39,6 @@ import { selectedSupplierReducer } from './common/stores/selectedSupplier.store'
 import { ModesService } from './common/services/modes.service';
 import { modes } from './common/stores/modes.store';
 import { selectedModeReducer } from './common/stores/selectedMode.store';
-
 
 // DECLARATIONS
 import { AppComponent } from './app.component';
@@ -90,9 +90,11 @@ import { SubjectsDetailComponent } from './subjects/subjects-detail/subjects-det
     DataTableModule,
     SharedModule,
     StoreModule.provideStore({
-      suppliers: suppliersReducer,
       selectedMode: selectedModeReducer,
-      selectedSupplier: selectedSupplierReducer
+      suppliers: suppliersReducer,
+      selectedSupplier: selectedSupplierReducer,
+      subjects: subjectsReducer,
+      selectedSubject: selectedSubjectReducer
     }),
     ApolloModule.forRoot(provideClient),
     ScrollToModule.forRoot(),
