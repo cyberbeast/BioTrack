@@ -19,6 +19,8 @@ import {Ng2PageScrollModule} from 'ng2-page-scroll';
 // CLIPBOARD
 import { ClipboardModule } from 'ngx-clipboard';
 
+// NGX-PIPES
+import { NgPipesModule } from 'ngx-pipes';
 
 // APOLLO CLIENT IMOPRTS
 import { ApolloClient, createNetworkInterface } from 'apollo-client';
@@ -56,6 +58,12 @@ import { SuppliersDetailsSubjectsTabComponent } from './suppliers/suppliers-deta
 import { SubjectsComponent } from './subjects/subjects.component';
 import { SubjectsMasterComponent } from './subjects/subjects-master/subjects-master.component';
 import { SubjectsDetailComponent } from './subjects/subjects-detail/subjects-detail.component';
+import { SubjectsInfoTabComponent } from './subjects/subjects-detail/subjects-info-tab/subjects-info-tab.component';
+import { SubjectsActivityTabComponent } from './subjects/subjects-detail/subjects-activity-tab/subjects-activity-tab.component';
+import { CardBiotrackIdComponent } from './subjects/subjects-detail/subjects-info-tab/card-biotrack-id/card-biotrack-id.component';
+import { CardLocationComponent } from './subjects/subjects-detail/subjects-info-tab/card-location/card-location.component';
+import { CardStatusComponent } from './subjects/subjects-detail/subjects-info-tab/card-status/card-status.component';
+import { CardInformationComponent } from './subjects/subjects-detail/subjects-info-tab/card-information/card-information.component';
 
 
 
@@ -72,7 +80,13 @@ import { SubjectsDetailComponent } from './subjects/subjects-detail/subjects-det
     SuppliersDetailsSubjectsTabComponent,
     SubjectsComponent,
     SubjectsMasterComponent,
-    SubjectsDetailComponent
+    SubjectsDetailComponent,
+    SubjectsInfoTabComponent,
+    SubjectsActivityTabComponent,
+    CardBiotrackIdComponent,
+    CardLocationComponent,
+    CardStatusComponent,
+    CardInformationComponent
   ],
   imports: [
     MaterializeModule.forRoot(),
@@ -87,6 +101,7 @@ import { SubjectsDetailComponent } from './subjects/subjects-detail/subjects-det
     HttpModule,
     routing,
     ClipboardModule,
+    NgPipesModule,
     DataTableModule,
     SharedModule,
     StoreModule.provideStore({
