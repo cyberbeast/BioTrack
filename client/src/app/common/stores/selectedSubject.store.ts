@@ -3,7 +3,7 @@ import { Subject } from '../models/subject.model';
 
 export const SELECT_SUBJECT = 'SELECT_SUBJECT';
 
-export function selectedSubjectReducer(state: Subject = {}, action: Action) {
+export function selectedSubjectReducer(state: any = {}, action: Action) {
   switch (action.type) {
     case SELECT_SUBJECT:
       return action.payload;
