@@ -8,11 +8,17 @@ import { Component, OnInit, Input } from '@angular/core';
 export class SubjectsDetailComponent implements OnInit {
   @Input() selectedSubject;
   currentSubject;
-  
+  currentSubjectsIdentificationObject;
+  currentSubjectsMetadataObject;
+
   constructor() { }
 
   ngOnInit() {
-    this.selectedSubject.subscribe(v => this.currentSubject = v);
+    this.selectedSubject.subscribe(v => {
+      this.currentSubject = v;
+      this.currentSubjectsIdentificationObject = v.identifications;
+      this.currentSubjectsMetadataObject = v.metadata;
+    });
   }
 
 }

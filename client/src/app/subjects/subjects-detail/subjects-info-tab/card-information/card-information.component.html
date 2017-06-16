@@ -1,0 +1,50 @@
+<div class="card" style="margin-top: 1.0em;">
+  <div class="card-block" style="overflow-y: auto; height: 65vh;">
+    <form class="compact">
+      <section class="form-block">
+        <label>A Form</label>
+        <div class="form-group">
+            <label for="aForm_1" style="text-align: right;">This is a form field</label>
+            <input type="text" id="aForm_1" placeholder="Enter value here" size="45">
+        </div>
+        <div class="form-group">
+            <label for="aForm_2">Another form field</label>
+            <input type="password" id="aForm_2" placeholder="Enter another value here" size="35">
+        </div>
+        <div class="form-group">
+            <label for="aForm_3">A select box</label>
+            <div class="select">
+                <select id="aForm_3">
+                    <option>Option 1</option>
+                    <option>Option 2</option>
+                    <option>Option 3</option>
+                    <option>Option 4</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="aForm_4">Textarea</label>
+            <textarea id="aForm_4" rows="5"></textarea>
+        </div>
+      </section>
+    </form>
+    <table class="table" style="margin-top: 0em;">
+        <thead>
+            <tr>
+                <th class="left">Name</th>
+                <th class="left">Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let meta of metadata | omit: '_id' | omit: '__typename' | pairs">
+                <td class="left">{{meta[0]}}</td>
+                <td class="left">{{meta[1]}}</td>
+            </tr>
+        </tbody>
+    </table>
+  </div>
+  <div class="card-footer">
+      <button class="btn btn-primary">Update</button>
+      <button class="btn btn-link">Cancel</button>
+  </div>
+</div>

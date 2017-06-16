@@ -3,100 +3,17 @@
     <clr-tab-link>Activity Log</clr-tab-link>
 
     <clr-tab-content [clrTabContentActive]="true">
-      <p>Information about the Subject.</p>
-      <div class="row">
-        <div class="col-xs-12 col-sm-4">
-            <a role="tooltip" aria-haspopup="true" class="tooltip tooltip-sm card clickable" ngxClipboard [cbContent]="this.id">
-              <span class="tooltip-content">Click to copy ID.</span>
-              <div class="card-block">
-                <h4 class="card-title">ID</h4>
-                <p class="card-text">{{currentSubject._id}}</p>
-              </div>
-            </a>
-        </div>
-        <div class="col-xs-12 col-sm-4">
-            <div class="card">
-                <div class="card-block">
-                    <h4 class="card-title">Current Location</h4>
-                    <p class="card-text">some location</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-4">
-            <div class="card">
-                <div class="card-block">
-                    <h4 class="card-title">Status</h4>
-                    <p class="card-text">some status</p>
-                </div>
-            </div>
-        </div>
-      </div>
-      <div class="row">
-    <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-        <a href="..." class="card clickable">
-            <div class="card-img">
-                <img src="..." alt="..." />
-            </div>
-            <div class="card-block">
-                <p class="card-text">
-                    ...
-                </p>
-            </div>
-        </a>
-    </div>
-    <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-        <a href="..." class="card clickable">
-          <div class="card-header">
-                Header
-            </div>
-            <div class="card-block">
-                <p class="card-text">
-                    Header?
-                </p>
-            </div>
-            <div class="card-img">
-                <img src="..." alt="..." />
-            </div>
-        </a>
-    </div>
-    <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-        <a href="..." class="card clickable">
-            <div class="card-block">
-                <p class="card-text">
-                    ...
-                </p>
-            </div>
-            <div class="card-img">
-                <img src="..." alt="..." />
-            </div>
-            <div class="card-block">
-                <p class="card-text">
-                    ...
-                </p>
-            </div>
-        </a>
-    </div>
-</div>
-<div class="row">
-    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-        <a href="..." class="card clickable card-img">
-            <img src="..." alt="..." />
-        </a>
-    </div>
-    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-        <a href="..." class="card clickable">
-            <div class="card-img">
-                <img src="..." alt="..." />
-            </div>
-        </a>
-    </div>
-</div>
+      <biotrack-subjects-info-tab
+        [currentSubject]="currentSubject"
+        [currentSubjectsMetadataObject]="currentSubjectsMetadataObject"
+        [currentSubjectsIdentificationObject]="currentSubjectsIdentificationObject">
+      </biotrack-subjects-info-tab>
     </clr-tab-content>
+    
     <clr-tab-content>
-        <p>Subjects provided by the supplier.</p>
-        <biotrack-suppliers-details-subjects-tab></biotrack-suppliers-details-subjects-tab>
+        <biotrack-subjects-activity-tab></biotrack-subjects-activity-tab>
     </clr-tab-content>
 </clr-tabs>
-<pre>
-  {{selectedSubject | async | json}}
-</pre>
+<!-- <pre>
+  {{currentSubjectsIdentificationObject | omit: '__typename' | json}}
+</pre> -->
