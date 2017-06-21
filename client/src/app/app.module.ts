@@ -64,6 +64,7 @@ import { CardBiotrackIdComponent } from './subjects/subjects-detail/subjects-inf
 import { CardLocationComponent } from './subjects/subjects-detail/subjects-info-tab/card-location/card-location.component';
 import { CardStatusComponent } from './subjects/subjects-detail/subjects-info-tab/card-status/card-status.component';
 import { CardInformationComponent } from './subjects/subjects-detail/subjects-info-tab/card-information/card-information.component';
+import { CardCabIdComponent } from './subjects/subjects-detail/subjects-info-tab/card-cab-id/card-cab-id.component';
 
 
 
@@ -86,7 +87,8 @@ import { CardInformationComponent } from './subjects/subjects-detail/subjects-in
     CardBiotrackIdComponent,
     CardLocationComponent,
     CardStatusComponent,
-    CardInformationComponent
+    CardInformationComponent,
+    CardCabIdComponent
   ],
   imports: [
     MaterializeModule.forRoot(),
