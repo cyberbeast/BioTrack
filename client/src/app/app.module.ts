@@ -65,6 +65,7 @@ import { CardLocationComponent } from './subjects/subjects-detail/subjects-info-
 import { CardStatusComponent } from './subjects/subjects-detail/subjects-info-tab/card-status/card-status.component';
 import { CardInformationComponent } from './subjects/subjects-detail/subjects-info-tab/card-information/card-information.component';
 import { CardCabIdComponent } from './subjects/subjects-detail/subjects-info-tab/card-cab-id/card-cab-id.component';
+import { CardSupplierComponent } from './subjects/subjects-detail/subjects-info-tab/card-supplier/card-supplier.component';
 
 
 
@@ -88,7 +89,8 @@ import { CardCabIdComponent } from './subjects/subjects-detail/subjects-info-tab
     CardLocationComponent,
     CardStatusComponent,
     CardInformationComponent,
-    CardCabIdComponent
+    CardCabIdComponent,
+    CardSupplierComponent
   ],
   imports: [
     MaterializeModule.forRoot(),
