@@ -8,6 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class CardInformationComponent implements OnInit {
   @Input() metadata;
   @Input() identifications;
+
   constructor() { }
 
   ngOnInit() {
