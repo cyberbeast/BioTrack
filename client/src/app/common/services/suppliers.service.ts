@@ -51,6 +51,7 @@ export class SuppliersService {
   private suppliers$: Observable<Array<Supplier>>;
   private selectedSupplier$: Observable<Supplier>;
   private subjectsBySelectedSupplier$ = new Subject<Array<any>>();
+  private selectedSupplierSub: any;
 
   constructor(
     private apollo: Apollo,
@@ -90,7 +91,7 @@ export class SuppliersService {
         payload: data.getSupplierInfoById
       });
 
-      this.selectedSupplier$.subscribe(v => {
+      this.selectedSupplierSub = this.selectedSupplier$.subscribe(v => {
         console.log("SUPPLIER SERVICE: Fetching subjects for Supplier with id - " + v._id);
         this.apollo.watchQuery<any>({
           query: getSubjectsBySupplierId,
@@ -99,7 +100,9 @@ export class SuppliersService {
           }
         }).subscribe(({data}) => {
           // console.log("Subjects for this supplier are: " + JSON.stringify(data));
-          this.subjectsBySelectedSupplier$.next(data.getSupplierInfoById.subjects)
+          this.subjectsBySelectedSupplier$.next(data.getSupplierInfoById.subjects);
+
+          this.selectedSupplierSub.unsubscribe();
         });
       });
     });

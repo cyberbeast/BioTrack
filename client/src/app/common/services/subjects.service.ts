@@ -40,10 +40,30 @@ const getSubjects = gql`
 
 `
 
+const getSubjectInfoById = gql`
+  query getSubjectInfoById($id: String!) {
+    getSubjectInfoById(id: $id) {
+      _id
+      notes
+      ...Identifications
+      ...Metadata
+      ...Measurements
+      ...Supplier
+      ...ActivityLog
+    }
+  }
+  ${fragmentMeasurementsOnSubject}
+  ${fragmentIdentificationsOnSubject}
+  ${fragmentMetadataOnSubject}
+  ${fragmentSupplierOnSubject}
+  ${fragmentActivityLogOnSubject}
+`
+
 @Injectable()
 export class SubjectsService {
   private subjects$: Observable<Array<Subject>>;
   private selectedSubject$: Observable<Subject>;
+  private selectedSubjectSub: any;
 
   constructor(
     private apollo: Apollo,
@@ -65,11 +85,32 @@ export class SubjectsService {
     });
   }
 
-  selectSubject(newSubject: Subject) {
-    console.log("Selecting new subject: " + JSON.stringify(newSubject));
-    this.store.dispatch({
-      type: 'SELECT_SUBJECT',
-      payload: newSubject
-    });
+  selectSubject(newSubjectId: String) {
+    console.log("RECEIVED REQ for: " + newSubjectId);
+    this.apollo.watchQuery<any>({
+      query: getSubjectInfoById,
+      variables: {
+        id: newSubjectId
+      }
+    }).subscribe(({data}) => {
+      console.log("Selecting new subject: " + JSON.stringify(data.getSubjectInfoById));
+      this.store.dispatch({
+        type: 'UPDATE_SUBJECT',
+        payload: data.getSubjectInfoById
+      });
+
+      this.store.dispatch({
+        type: 'SELECT_SUBJECT',
+        payload: data.getSubjectInfoById
+      });
+    })
   }
+
+  // selectSubject(newSubject: Subject) {
+  //   console.log("Selecting new subject: " + JSON.stringify(newSubject));
+  //   this.store.dispatch({
+  //     type: 'SELECT_SUBJECT',
+  //     payload: newSubject
+  //   });
+  // }
 }
