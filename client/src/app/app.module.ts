@@ -66,6 +66,7 @@ import { CardStatusComponent } from './subjects/subjects-detail/subjects-info-ta
 import { CardInformationComponent } from './subjects/subjects-detail/subjects-info-tab/card-information/card-information.component';
 import { CardCabIdComponent } from './subjects/subjects-detail/subjects-info-tab/card-cab-id/card-cab-id.component';
 import { CardSupplierComponent } from './subjects/subjects-detail/subjects-info-tab/card-supplier/card-supplier.component';
+import { SubjectsMeasurementTabComponent } from './subjects/subjects-detail/subjects-measurement-tab/subjects-measurement-tab.component';
 
 
 
@@ -90,7 +91,8 @@ import { CardSupplierComponent } from './subjects/subjects-detail/subjects-info-
     CardStatusComponent,
     CardInformationComponent,
     CardCabIdComponent,
-    CardSupplierComponent
+    CardSupplierComponent,
+    SubjectsMeasurementTabComponent
   ],
   imports: [
     MaterializeModule.forRoot(),
