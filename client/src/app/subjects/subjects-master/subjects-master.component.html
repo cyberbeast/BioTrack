@@ -7,6 +7,6 @@
 </div>
 <section class="nav-group">
   <ul class="nav-list" *ngFor="let subject of subjects | async">
-    <li><a class="nav-link" [class.active]="subject._id==activeSubjectId" (click)="this.selectedSubject.emit(subject)">{{subject._id}}</a></li>
+    <li><a class="nav-link" [class.active]="subject._id==activeSubjectId" (click)="this.selectedSubject.emit(subject._id)">{{subject._id}}</a></li>
   </ul>
 </section>

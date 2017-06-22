@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 // rxjs imports
 import { Observable } from 'rxjs/Observable';
@@ -27,7 +28,8 @@ export class SubjectsComponent implements OnInit {
   constructor(
     private subjectsService: SubjectsService,
     private modesService: ModesService,
-    private store: Store<AppStore>
+    private store: Store<AppStore>,
+    private route: ActivatedRoute
   ) {
     subjectsService.loadSubjects();
     this.subjects = store.select('subjects');
@@ -45,6 +47,10 @@ export class SubjectsComponent implements OnInit {
 
   ngOnInit() {
     this.modesService.setMode("subjects");
+
+    this.route.params.subscribe(params => {
+      this.selectSubject(params.subject_id);
+    });
 
     // this.subjectsService.loadSubjects();
 
