@@ -8,7 +8,8 @@ import { Component, OnInit, Input } from '@angular/core';
 export class CardSupplierComponent implements OnInit {
   @Input() supplier;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }

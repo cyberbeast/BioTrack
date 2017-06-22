@@ -8,6 +8,7 @@ import { Store } from '@ngrx/store';
 
 // subject service, models import
 import { SubjectsService } from '../common/services/subjects.service';
+import { ModesService } from '../common/services/modes.service';
 import { AppStore } from '../common/models/appstore.model';
 import { Subject } from '../common/models/subject.model';
 
@@ -25,6 +26,7 @@ export class SubjectsComponent implements OnInit {
 
   constructor(
     private subjectsService: SubjectsService,
+    private modesService: ModesService,
     private store: Store<AppStore>
   ) {
     subjectsService.loadSubjects();
@@ -42,6 +44,8 @@ export class SubjectsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.modesService.setMode("subjects");
+
     // this.subjectsService.loadSubjects();
 
   }

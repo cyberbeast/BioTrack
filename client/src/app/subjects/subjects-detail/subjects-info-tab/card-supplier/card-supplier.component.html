@@ -1,4 +1,4 @@
-<a role="tooltip" aria-haspopup="true" class="tooltip tooltip-sm card clickable" ngxClipboard [cbContent]="supplier._id">
+<a role="tooltip" aria-haspopup="true" class="tooltip tooltip-sm card clickable" ngxClipboard [cbContent]="supplier._id" [routerLink]="['/suppliers', supplier._id]">
   <span class="tooltip-content">Click to copy ID.</span>
   <div class="card-block">
     <p class="card-text minimize-space">Supplier</p>
