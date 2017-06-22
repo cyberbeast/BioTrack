@@ -22,6 +22,10 @@ export const routes: Routes = [
     component: SuppliersComponent
   },
   {
+    path: 'suppliers/:supplier_id',
+    component: SuppliersComponent
+  },
+  {
     path: 'subjects',
     component: SubjectsComponent
   }
