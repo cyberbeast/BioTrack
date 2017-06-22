@@ -1,6 +1,7 @@
 <clr-tabs>
     <clr-tab-link [clrTabLinkActive]="true">Information</clr-tab-link>
     <clr-tab-link>Activity Log</clr-tab-link>
+    <clr-tab-link>Measurements</clr-tab-link>
 
     <clr-tab-content [clrTabContentActive]="true">
       <biotrack-subjects-info-tab
@@ -11,7 +12,13 @@
     </clr-tab-content>
 
     <clr-tab-content>
-        <biotrack-subjects-activity-tab></biotrack-subjects-activity-tab>
+      <biotrack-subjects-activity-tab></biotrack-subjects-activity-tab>
+    </clr-tab-content>
+
+    <clr-tab-content>
+      <biotrack-subjects-measurement-tab
+        [currentSubjectsMeasurementObject]="currentSubjectsMeasurementObject">
+      </biotrack-subjects-measurement-tab>
     </clr-tab-content>
 </clr-tabs>
 <!-- <pre>

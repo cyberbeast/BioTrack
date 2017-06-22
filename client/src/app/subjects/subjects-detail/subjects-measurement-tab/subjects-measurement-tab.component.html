@@ -1,0 +1,74 @@
+<div class="row flex-items-xs-center">
+    <div class="col-xs-3">
+      <div class="card card-block" style="margin-top: 1em;">
+        <p class="card-text minimize-space">
+          Height
+        </p>
+        <h3 class="card-title"><strong>{{currentSubjectsMeasurementObject.measurement_Height}}</strong></h3>
+      </div>
+    </div>
+    <div class="col-xs-3">
+      <div class="card card-block" style="margin-top: 1em;">
+        <p class="card-text minimize-space">
+          Weight
+        </p>
+        <h3 class="card-title"><strong>{{currentSubjectsMeasurementObject.measurement_Weight}}</strong></h3>
+      </div>
+    </div>
+</div>
+
+<!-- <div class="row">
+    <div class="col-sm-12 col-md-12"> -->
+      <div class="card" style="margin-top: 1.0em;">
+        <div class="card-block">
+          <p class="card-text">
+            Measurements
+          </p>
+          <clr-stack-view>
+            <clr-stack-block [clrSbExpanded]="true">
+              <clr-stack-label>Measurements</clr-stack-label>
+              <clr-stack-content> </clr-stack-content>
+
+              <clr-stack-block
+                *ngFor="let measurement of currentSubjectsMeasurementObject | omit: '_id' | omit: '__typename' | pairs">
+                <clr-stack-label>{{measurement[0]}}</clr-stack-label>
+                <clr-stack-content>{{measurement[1]}}</clr-stack-content>
+              </clr-stack-block>
+            </clr-stack-block>
+          </clr-stack-view>
+
+          <clr-modal [(clrModalOpen)]="editModal" [clrModalSize]="'xl'">
+            <h3 class="modal-title">Edit mode</h3>
+            <div class="modal-body">
+                <clr-stack-view>
+                    <clr-stack-block [clrSbExpanded]="true">
+                        <clr-stack-label>Measurements</clr-stack-label>
+
+                        <clr-stack-block
+                            *ngFor="let measurement of currentSubjectsMeasurementObject | omit: '_id' | omit: '__typename' | pairs">
+                            <clr-stack-label>{{measurement[0]}}</clr-stack-label>
+                            <clr-stack-content>
+                                <input type="text" value="{{measurement[1]}}" />
+                            </clr-stack-content>
+                        </clr-stack-block>
+                    </clr-stack-block>
+                </clr-stack-view>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click)="editModal = false">Done</button>
+            </div>
+          </clr-modal>
+          <button
+              class="stack-action btn btn-link"
+              (click)="editModal = true"
+              type="button">Edit</button>
+        </div>
+        <!-- <div class="card-footer">
+          <button
+              class="stack-action btn btn-link"
+              (click)="editModal = true"
+              type="button">Edit</button>
+        </div> -->
+      </div>
+    <!-- </div>
+</div> -->

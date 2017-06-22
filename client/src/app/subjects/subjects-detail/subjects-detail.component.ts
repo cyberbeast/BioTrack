@@ -10,6 +10,7 @@ export class SubjectsDetailComponent implements OnInit {
   currentSubject;
   currentSubjectsIdentificationObject;
   currentSubjectsMetadataObject;
+  currentSubjectsMeasurementObject;
 
   constructor() { }
 
@@ -18,6 +19,7 @@ export class SubjectsDetailComponent implements OnInit {
       this.currentSubject = v;
       this.currentSubjectsIdentificationObject = v.identifications;
       this.currentSubjectsMetadataObject = v.metadata;
+      this.currentSubjectsMeasurementObject = v.measurements;
     });
   }
 
