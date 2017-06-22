@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 // rxjs imports
 import { Observable } from "rxjs/Observable";
@@ -9,6 +10,7 @@ import { Store } from '@ngrx/store';
 
 // supplier service, models import
 import { SuppliersService } from '../common/services/suppliers.service';
+import { ModesService } from '../common/services/modes.service';
 import { AppStore } from '../common/models/appstore.model';
 import { Supplier } from '../common/models/supplier.model';
 
@@ -32,7 +34,9 @@ export class SuppliersComponent implements OnInit {
 
   constructor(
     private suppliersService: SuppliersService,
-    private store: Store<AppStore>
+    private modesService: ModesService,
+    private store: Store<AppStore>,
+    private route: ActivatedRoute
   ) {
 
     // this.suppliers = suppliersService.suppliers$;
@@ -51,8 +55,8 @@ export class SuppliersComponent implements OnInit {
 
   }
 
-  selectSupplier(supplier) {
-    this.suppliersService.selectSupplier(supplier);
+  selectSupplier(supplier_id) {
+    this.suppliersService.selectSupplier(supplier_id);
   }
 
   settings = {
@@ -102,7 +106,12 @@ export class SuppliersComponent implements OnInit {
 
   ngOnInit() {
     this.suppliersService.loadSuppliers();
+    this.modesService.setMode("suppliers");
     // this.suppliers = this.suppliersService.suppliers$;
+
+    this.route.params.subscribe(params => {
+      this.selectSupplier(params.supplier_id);
+    });
   }
 
 }
