@@ -6,6 +6,59 @@ export const fragmentMeasurementsOnSubject = gql`
         _id
         measurement_Height
         measurement_Weight
+        measurement_Shoulder_Acromial_Height
+        measurement_Vertex_to_Symphision_Length
+        measurement_Waist_Height_Umbilicus
+        measurement_Waist_Depth_Umbilicus
+        measurement_Waist_Breadth
+        measurement_Shoulder_Breadth_Biacromial
+        measurement_Chest_Breadth_4th_Rib
+        measurement_Chest_Breadth_8th_Rib
+        measurement_Chest_Depth_4th_Rib
+        measurement_Chest_Depth_8th_Rib
+        measurement_Seated_Chest_Breadth_4th_Rib
+        measurement_Seated_Chest_Breadth_8th_Rib
+        measurement_Seated_Chest_Depth_4th_Rib
+        measurement_Seated_Chest_Depth_8th_Rib
+        measurement_Buttock_Depth
+        measurement_Interscye_Across_Back
+        measurement_Hip_Breadth
+        measurement_Shoulder_to_Elbow
+        measurement_Forearm_to_Hand
+        measurement_Tibiale_Height
+        measurement_Ankle_Height_Outside
+        measurement_Foot_Breadth
+        measurement_Foot_Length
+        measurement_Top_of_Head_to_Trochacterion
+        measurement_Seated_Height_Top_of_Head_to_Bottom_of_Feet
+        measurement_Seated_Head_to_Buttock
+        measurement_Seated_Knee_Height
+        measurement_Seated_Hip_to_Knee_Length
+        measurement_Head_Length
+        measurement_Head_Breadth
+        measurement_Head_Height
+        measurement_Head_Circumference
+        measurement_Bicep_Circumference
+        measurement_Elbow_Circumference
+        measurement_Forearm_Circumference
+        measurement_Wrist_Circumference
+        measurement_Thigh_Circumference
+        measurement_Lower_Thigh_Circumference
+        measurement_Knee_Circumference
+        measurement_Calf_Circumference
+        measurement_Ankle_Circumference
+        measurement_Neck_Circumference
+        measurement_Scye_Armpit_Circumference
+        measurement_Chest_Circumference_4th_Rib
+        measurement_Chest_Circumference_8th_Rib
+        measurement_Seated_Chest_Circumference_4th_Rib
+        measurement_Seated_Chest_Circumference_8th_Rib
+        measurement_Waist_Circumference_At_Umbilicus
+        measurement_8cm_Above_Umbilicus
+        measurement_8cm_Below_Umbilicus
+        measurement_Buttock_Circumference
+        measurement_Seated_Surface_to_T1
+        measurement_Top_of_Head_to_T1
       }
     }
   `
