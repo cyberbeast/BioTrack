@@ -24,9 +24,20 @@ const getSuppliers = gql`
   }
 `;
 
+const getSupplierInfoById = gql`
+  query getSupplierInfoById($id: String!) {
+    getSupplierInfoById(id: $id) {
+      _id
+      name
+      description
+    }
+  }
+`
+
 const getSubjectsBySupplierId = gql`
   query getSubjectsBySupplierId($id: String!) {
     getSupplierInfoById(id: $id) {
+      _id
       subjects {
         _id
       }
@@ -60,26 +71,63 @@ export class SuppliersService {
     });
   }
 
-  selectSupplier(newSupplier: Supplier) {
-    console.log("Selecting new supplier: " + JSON.stringify(newSupplier));
-    this.store.dispatch({
-      type: 'SELECT_SUPPLIER',
-      payload: newSupplier
-    });
+  selectSupplier(newSupplierId: String) {
+    console.log("RECEIVED REQ for: " + newSupplierId);
+    this.apollo.watchQuery<any>({
+      query: getSupplierInfoById,
+      variables: {
+        id: newSupplierId
+      }
+    }).subscribe(({data}) => {
+      console.log("Selecting new supplier: " + JSON.stringify(data.getSupplierInfoById));
+      this.store.dispatch({
+        type: 'UPDATE_SUPPLIER',
+        payload: data.getSupplierInfoById
+      });
 
-    this.selectedSupplier$.subscribe(v => {
-      console.log("SUPPLIER SERVICE: Fetching subjects for Supplier with id - " + v._id);
-      this.apollo.watchQuery<any>({
-        query: getSubjectsBySupplierId,
-        variables: {
-          id: v._id
-        }
-      }).subscribe(({data}) => {
-        // console.log("Subjects for this supplier are: " + JSON.stringify(data));
-        this.subjectsBySelectedSupplier$.next(data.getSupplierInfoById.subjects)
+      this.store.dispatch({
+        type: 'SELECT_SUPPLIER',
+        payload: data.getSupplierInfoById
+      });
+
+      this.selectedSupplier$.subscribe(v => {
+        console.log("SUPPLIER SERVICE: Fetching subjects for Supplier with id - " + v._id);
+        this.apollo.watchQuery<any>({
+          query: getSubjectsBySupplierId,
+          variables: {
+            id: v._id
+          }
+        }).subscribe(({data}) => {
+          // console.log("Subjects for this supplier are: " + JSON.stringify(data));
+          this.subjectsBySelectedSupplier$.next(data.getSupplierInfoById.subjects)
+        });
       });
     });
+
+
   }
+
+  // COPY OF selectSupplier method as was working previously
+  // selectSupplier(newSupplier: Supplier) {
+  //   console.log("Selecting new supplier: " + JSON.stringify(newSupplier));
+  //   this.store.dispatch({
+  //     type: 'SELECT_SUPPLIER',
+  //     payload: newSupplier
+  //   });
+  //
+  //   this.selectedSupplier$.subscribe(v => {
+  //     console.log("SUPPLIER SERVICE: Fetching subjects for Supplier with id - " + v._id);
+  //     this.apollo.watchQuery<any>({
+  //       query: getSubjectsBySupplierId,
+  //       variables: {
+  //         id: v._id
+  //       }
+  //     }).subscribe(({data}) => {
+  //       // console.log("Subjects for this supplier are: " + JSON.stringify(data));
+  //       this.subjectsBySelectedSupplier$.next(data.getSupplierInfoById.subjects)
+  //     });
+  //   });
+  // }
 
   getSubjectsBySelectedSupplier(): Observable<any> {
     return this.subjectsBySelectedSupplier$.asObservable();
