@@ -28,6 +28,10 @@ export const routes: Routes = [
   {
     path: 'subjects',
     component: SubjectsComponent
+  },
+  {
+    path: 'subjects/:subject_id',
+    component: SubjectsComponent
   }
 ];
 
