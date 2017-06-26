@@ -4,15 +4,15 @@ import _ from 'lodash';
 var waterfall = require('async-waterfall');
 
 // Import mongoose models
-import SupplierModel from './server/graphql/models/supplier';
-import SubjectModel from './server/graphql/models/subject';
-import MeasurementModel from './server/graphql/models/measurement';
-import MetadataModel from './server/graphql/models/metadata';
-import IdModel from './server/graphql/models/id';
-import ActivityModel from './server/graphql/models/activity';
+import SupplierModel from './graphql/models/supplier';
+import SubjectModel from './graphql/models/subject';
+import MeasurementModel from './graphql/models/measurement';
+import MetadataModel from './graphql/models/metadata';
+import IdModel from './graphql/models/id';
+import ActivityModel from './graphql/models/activity';
 
 // Import default values file
-const dv = require('./server/graphql/defaultValues.json');
+const dv = require('./graphql/defaultValues.json');
 
 // Import config file
 const config = require('./config.json');
@@ -29,7 +29,7 @@ db.on('error', console.error.bind(console, 'DB: connection error'));
 db.once('open', function() {
     console.log("DB: Connected to Database");
     const activity_count = 5;
-    const subject_count = 5;
+    const subject_count = 15;
 
     for (var i=0; i<subject_count; i++){
       waterfall([
@@ -55,7 +55,7 @@ db.once('open', function() {
             });
           });
           // console.log( activity_log_ids);
- + "\t -> \t Consolidated "
+             // + "\t -> \t Consolidated "
         },
         function(activity_log_ids, callback){
           // console.log("\t* SUPPLIER");
@@ -63,7 +63,7 @@ db.once('open', function() {
           var supplier_id = "";
 
           new SupplierModel({
-            name: casual.name,
+            name: casual.random_element(dv.suppliers),
             description: casual.short_description
           }).save().then((supplier) => {
             console.log( supplier.id + "\t -> \t supplier ");
