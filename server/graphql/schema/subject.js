@@ -3,6 +3,7 @@ import Activity from './activity';
 import Measurement from './measurement';
 import Metadata from './metadata';
 import ID from './id';
+import Component from './component';
 
 const Subject = `
     type Subject {
@@ -24,6 +25,9 @@ const Subject = `
         #Supplier
         supplier: Supplier
 
+        #Component Information
+        components: [Component]
+
         #Activity Logs
         activity_log: [Activity]
 
@@ -33,4 +37,4 @@ const Subject = `
 `;
 
 console.log("Exporting TYPE: Subject");
-export default () => [Subject, Supplier, Activity, Measurement, Metadata, ID]
+export default () => [Subject, Supplier, Activity, Measurement, Metadata, Component, ID]

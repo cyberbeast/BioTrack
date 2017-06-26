@@ -7,6 +7,7 @@ var subjectSchema = new Schema({
   metadata: Schema.Types.ObjectId,
   measurements: Schema.Types.ObjectId,
   supplier: Schema.Types.ObjectId,
+  components: [Schema.Types.ObjectId],
   activity_log: [Schema.Types.ObjectId],
   notes: String
 });

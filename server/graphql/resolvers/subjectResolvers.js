@@ -4,6 +4,7 @@ import MeasurementModel from '../models/measurement';
 import MetadataModel from '../models/metadata';
 import SubjectModel from '../models/subject';
 import SupplierModel from '../models/supplier';
+import ComponentModel from '../models/component';
 const ObjectId = require('mongoose').Types.ObjectId;
 
 console.log("Exporting Resolvers for: Subject");
@@ -58,8 +59,19 @@ export const subjectResolvers = {
           $in: _.activity_log
         }
       }).then((res) => res);
+    },
 
+    components(_) {
+      console.log(_);
 
+      var components = [];
+      console.log("Request for component list: " + _.components);
+      // Iterate through all ids in the component array and fetch the corresponding components.
+      return ComponentModel.find({
+        '_id': {
+          $in: _.components
+        }
+      }).then((res) => res);
     }
   }
 

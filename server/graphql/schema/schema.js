@@ -7,6 +7,7 @@ import Activity from './activity';
 import Measurement from './measurement';
 import Metadata from './metadata';
 import ID from './id';
+import Component from './component';
 
 // # supplier(name: String): Supplier
 
@@ -31,6 +32,6 @@ const SchemaDefinition = `
 
 console.log("Compiling BioTrack GraphQL Schema...");
 export default makeExecutableSchema({
-  typeDefs: [SchemaDefinition, RootQuery, EnumTypes, Subject, Supplier, Activity, Measurement, Metadata, ID],
+  typeDefs: [SchemaDefinition, RootQuery, EnumTypes, Subject, Supplier, Activity, Measurement, Metadata, Component, ID],
   resolvers: Resolvers
 });
