@@ -67,8 +67,16 @@ import { CardInformationComponent } from './subjects/subjects-detail/subjects-in
 import { CardCabIdComponent } from './subjects/subjects-detail/subjects-info-tab/card-cab-id/card-cab-id.component';
 import { CardSupplierComponent } from './subjects/subjects-detail/subjects-info-tab/card-supplier/card-supplier.component';
 import { SubjectsMeasurementTabComponent } from './subjects/subjects-detail/subjects-measurement-tab/subjects-measurement-tab.component';
-
-
+import { SubjectsBannerComponent } from './subjects/subjects-banner/subjects-banner.component';
+import { SubjectsSidepanelComponent } from './subjects/subjects-sidepanel/subjects-sidepanel.component';
+import { SubjectsTabsComponent } from './subjects/subjects-tabs/subjects-tabs.component';
+import { BannerCardIdComponent } from './subjects/subjects-banner/banner-card-id/banner-card-id.component';
+import { BannerCardCabIdComponent } from './subjects/subjects-banner/banner-card-cab-id/banner-card-cab-id.component';
+import { BannerCardSupplierComponent } from './subjects/subjects-banner/banner-card-supplier/banner-card-supplier.component';
+import { SubjectsInfoComponent } from './subjects/subjects-info/subjects-info.component';
+import { SubjectsMeasurementsComponent } from './subjects/subjects-measurements/subjects-measurements.component';
+import { SubjectsActivityComponent } from './subjects/subjects-activity/subjects-activity.component';
+import { SubjectsComponentsComponent } from './subjects/subjects-components/subjects-components.component';
 
 @NgModule({
   declarations: [
@@ -92,7 +100,17 @@ import { SubjectsMeasurementTabComponent } from './subjects/subjects-detail/subj
     CardInformationComponent,
     CardCabIdComponent,
     CardSupplierComponent,
-    SubjectsMeasurementTabComponent
+    SubjectsMeasurementTabComponent,
+    SubjectsBannerComponent,
+    SubjectsSidepanelComponent,
+    SubjectsTabsComponent,
+    BannerCardIdComponent,
+    BannerCardCabIdComponent,
+    BannerCardSupplierComponent,
+    SubjectsInfoComponent,
+    SubjectsMeasurementsComponent,
+    SubjectsActivityComponent,
+    SubjectsComponentsComponent
   ],
   imports: [
     MaterializeModule.forRoot(),
