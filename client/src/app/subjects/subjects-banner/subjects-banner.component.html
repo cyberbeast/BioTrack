@@ -1,0 +1,147 @@
+<!-- <biotrack-subjects-info-tab
+  [currentSubject]="currentSubject"
+  [currentSubjectsMetadataObject]="currentSubjectsMetadataObject"
+  [currentSubjectsIdentificationObject]="currentSubjectsIdentificationObject">
+</biotrack-subjects-info-tab> -->
+
+<div class="row flex-items-xs-center" style="height: 100%">
+  <div class="col-xs-12" style="height: 100%; flex-direction: column; overflow-y: auto; padding-top: 0.5em; padding-bottom:0.5em;">
+    <div style="height: 60%; margin-top:0;">
+      <div class="row">
+        <div class="col-xs-12 ">
+          <div class="card" style="margin-top: 0.2em; margin-bottom:0.5em;">
+            <div class="card-block">
+              <div class="card-text">
+                <table class="table table-compact table-noborder">
+                  <thead>
+                    <tr>
+                      <th class="left">BioTrack ID</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="left">{{currentSubject._id}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <br />
+                <table class="table table-compact table-noborder">
+                  <thead>
+                    <tr>
+                      <th class="left">CAB ID</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="left">{{currentSubject._id}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+            </div>
+          </div>
+          <a role="tooltip" aria-haspopup="true" class="tooltip tooltip-sm card clickable" ngxClipboard [cbContent]="this.currentSubjectsSupplierObject?._id" (click)="navigateToSupplierView()" style="background-color: #fff; margin-top: 0.5em; margin-bottom: 0.5em;">
+                      <span class="tooltip-content">Click to copy and navigate to Supplier's ID.</span>
+                      <div class="card-block">
+                        <div class="card-text">
+                          <table class="table table-compact table-noborder">
+                            <thead>
+                                <tr>
+                                    <th class="left">Supplier</th>
+                                </tr>
+                            </thead>
+                            <tbody style="word-wrap: break-word;">
+                                <tr>
+                                    <td class="left">{{currentSubjectsSupplierObject?.name | shorten: 25: '...'}}</td>
+                                </tr>
+                            </tbody>
+                          </table>
+                        </div>
+
+                      </div>
+                    </a>
+          <div class="card" style="margin-top: 0.2em; margin-bottom:0.5em;">
+            <div class="card-block">
+              <div class="card-text">
+                <div class="row flex-items-xs-middle">
+                  <div class="col-xs-11">
+                    <table class="table table-compact table-noborder">
+                      <thead>
+                        <tr>
+                          <th class="left">Status</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td class="left">Available </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <!-- <div class="col-xs-1">
+                    <a href="javascript://" class="nav-link nav-icon">
+                      <clr-icon shape="edit"></clr-icon>
+                    </a>
+                  </div> -->
+                </div>
+
+                <!-- <a role="tooltip" aria-haspopup="true" class="tooltip tooltip-sm clickable" ngxClipboard [cbContent]="currentSubject.supplier._id" [routerLink]="['/suppliers', currentSubject.supplier._id]"> -->
+                <!-- <span class="tooltip-content">Click to copy ID.</span> -->
+                <!-- </a> -->
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="height: 40%; margin-top:0;">
+      <div class="row flex-items-xs-bottom" style="height:100%">
+        <div class="col-xs-12" style="height:100%">
+          <div class="card" style="margin-top: 0.2em; margin-bottom:0.5em; height:100%">
+            <div class="card-block">
+              <div class="card-text">
+                <table class="table table-compact table-noborder" style="height: 100%">
+                  <thead>
+                    <tr>
+                      <th class="left">Notes</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="left">
+                        <div class="row flex-items-xs-bottom" style="height:100%">
+                          <textarea id="notes" rows="14" style="resize: none; height:100%;">{{currentSubject.notes}}</textarea>
+                        <br />
+                      </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <button class="btn btn-sm">Save</button>
+                <button class="btn btn-link">Cancel</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- <subjects-banner-card-id
+    [biotrackID]="currentSubject._id">
+  </subjects-banner-card-id> -->
+</div>
+<!-- <div class="row">
+  <subjects-banner-card-cab-id
+    [cabID]="currentSubject._id">
+  </subjects-banner-card-cab-id>
+</div>
+<div class="row">
+    <subjects-banner-card-supplier
+      [supplier]="currentSubject.supplier">
+    </subjects-banner-card-supplier>
+</div> -->

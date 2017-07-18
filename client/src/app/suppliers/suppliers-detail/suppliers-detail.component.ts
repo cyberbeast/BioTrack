@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'biotrack-suppliers-detail',
@@ -8,6 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class SuppliersDetailComponent implements OnInit {
   @Input() selectedSupplier;
   @Input() subjectsBySelectedSupplier;
+  @Output() newMode = new EventEmitter();
 
   name: string;
   description: string;

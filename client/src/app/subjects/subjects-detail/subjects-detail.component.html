@@ -4,11 +4,13 @@
     <clr-tab-link>Measurements</clr-tab-link>
 
     <clr-tab-content [clrTabContentActive]="true">
+      <div class="content-area" style="overflow-y: auto; height: 100vh;">
       <biotrack-subjects-info-tab
         [currentSubject]="currentSubject"
         [currentSubjectsMetadataObject]="currentSubjectsMetadataObject"
         [currentSubjectsIdentificationObject]="currentSubjectsIdentificationObject">
       </biotrack-subjects-info-tab>
+    </div>
     </clr-tab-content>
 
     <clr-tab-content>
@@ -16,9 +18,11 @@
     </clr-tab-content>
 
     <clr-tab-content>
+      <div class="content-area" style="overflow-y: scroll; height: 100vh;">
       <biotrack-subjects-measurement-tab
         [currentSubjectsMeasurementObject]="currentSubjectsMeasurementObject">
       </biotrack-subjects-measurement-tab>
+    </div>
     </clr-tab-content>
 </clr-tabs>
 <!-- <pre>

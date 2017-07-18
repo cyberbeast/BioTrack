@@ -1,0 +1,64 @@
+<div class="row">
+    <div class="col-xs-12">
+        <div class="card" style="margin-top:0.5em;">
+            <div class="card-header">
+              <button
+                  class="stack-action btn btn-sm btn-outline"
+                  (click)="editModal = true"
+                  type="button">
+                  Edit
+              </button>
+              <button
+                  class="btn btn-sm btn-warning-outline"
+                  type="button">
+                  Archive
+              </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="margin-top: 0.5em;">
+    <clr-stack-view>
+      <clr-stack-block>
+        <clr-stack-label>Identifications</clr-stack-label>
+        <clr-stack-content> </clr-stack-content>
+
+        <clr-stack-block *ngFor="let id_item of identifications | omit: '_id' | omit: '__typename' | pairs">
+          <clr-stack-label>{{id_item[0] | ltrim: 'id_'}}</clr-stack-label>
+          <clr-stack-content>{{id_item[1]}}</clr-stack-content>
+        </clr-stack-block>
+      </clr-stack-block>
+      <clr-stack-block
+        [clrSbExpanded]="true">
+          <clr-stack-label>Metadata</clr-stack-label>
+
+          <clr-stack-block *ngFor="let meta of metadata | omit: '_id' | omit: '__typename' | pairs">
+              <clr-stack-label>{{meta[0] | ltrim: 'meta_'}}</clr-stack-label>
+              <clr-stack-content>{{meta[1]}}</clr-stack-content>
+          </clr-stack-block>
+      </clr-stack-block>
+    </clr-stack-view>
+  </div>
+
+    <clr-modal [(clrModalOpen)]="editModal">
+      <h3 class="modal-title">Edit mode</h3>
+      <div class="modal-body">
+          <clr-stack-view>
+              <clr-stack-block [clrSbExpanded]="true">
+                  <clr-stack-label>Metadata</clr-stack-label>
+
+                  <clr-stack-block
+                      *ngFor="let meta of metadata | omit: '_id' | omit: '__typename' | pairs">
+                      <clr-stack-label>{{meta[0] | ltrim: 'meta_'}}</clr-stack-label>
+                      <clr-stack-content>
+                          <input type="text" value="{{meta[1]}}" />
+                      </clr-stack-content>
+                  </clr-stack-block>
+              </clr-stack-block>
+          </clr-stack-view>
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-primary" (click)="editModal = false">Done</button>
+      </div>
+    </clr-modal>

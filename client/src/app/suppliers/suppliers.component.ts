@@ -59,6 +59,10 @@ export class SuppliersComponent implements OnInit {
     this.suppliersService.selectSupplier(supplier_id);
   }
 
+  setNewMode(mode) {
+    this.modesService.setMode(mode.toLowerCase());
+  }
+
   settings = {
     columns: {
       name: {
@@ -106,7 +110,7 @@ export class SuppliersComponent implements OnInit {
 
   ngOnInit() {
     this.suppliersService.loadSuppliers();
-    this.modesService.setMode("suppliers");
+    // this.modesService.setMode("suppliers");
     // this.suppliers = this.suppliersService.suppliers$;
 
     this.route.params.subscribe(params => {

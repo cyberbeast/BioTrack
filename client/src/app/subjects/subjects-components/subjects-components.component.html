@@ -1,0 +1,51 @@
+<div class="row">
+    <div class="col-xs-12">
+        <div class="card" style="margin-top:0.5em;">
+            <div class="card-header">
+              <button
+                  class="stack-action btn btn-sm btn-outline"
+                  (click)="editModal = true"
+                  type="button">
+                  Edit
+              </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="margin-top: 0.5em;">
+
+  <div class="card card-block">
+    <p class="card-text username-list">
+        Selected component:
+        <em *ngIf="!singleSelected">No component selected.</em>
+        <span class="username" *ngIf="singleSelected">{{singleSelected| json}}</span>
+    </p>
+  </div>
+
+  <clr-datagrid [(clrDgSelected)]="singleSelected">
+    <clr-dg-column *ngFor="let item of headers">
+      <clr-dg-string-filter [clrDgStringFilter]="nameFilter"></clr-dg-string-filter>
+      <ng-container *clrDgHideableColumn="{hidden : item.hidden}">
+        {{item.name}}
+      </ng-container>
+    </clr-dg-column>
+    <!-- <clr-dg-column>Creation date</clr-dg-column>
+    <clr-dg-column>Favorite color</clr-dg-column> -->
+
+    <clr-dg-row  *clrDgItems="let component of components" [clrDgItem]="component">
+        <clr-dg-cell>{{component.id}}</clr-dg-cell>
+        <clr-dg-cell>{{component.name}}</clr-dg-cell>
+        <clr-dg-cell>{{component.location}}</clr-dg-cell>
+        <clr-dg-cell>{{component.last_activity_id}}</clr-dg-cell>
+        <!-- <clr-dg-cell>{{component.creation | date}}</clr-dg-cell>
+        <clr-dg-cell>{{component.color}}</clr-dg-cell> -->
+
+        <clr-dg-row-detail *clrIfExpanded>
+          Lorem ipsum...
+        </clr-dg-row-detail>
+    </clr-dg-row>
+
+    <clr-dg-footer>{{components.length}} users</clr-dg-footer>
+</clr-datagrid>
+</div>

@@ -1,0 +1,42 @@
+/* Global App Style goes here */
+.work-area {
+  height: calc(100vh - 66px);
+}
+
+.main-container .content-container .content-area { overflow: auto;; padding-bottom: 0; padding-left: 0;}
+
+.left-col {
+  border-right: 1px solid rgb(204, 204, 204);
+  padding-right:0;
+  /*float: right;*/
+}
+
+.right-col {
+  border-right: 1px solid rgb(204, 204, 204);
+  padding-right:0;
+  width: 75%;
+  float: left;
+}
+
+.here-is-my-tab:not([data-hidden="true"]) {
+  height: 95%;
+  padding-bottom: 96px;
+  overflow-y: auto;
+  display: block;
+}
+
+.container { height: 100%; }
+
+.row{
+  height: 100%;
+  width: 100%;
+}
+
+.horbreak {
+  width: 25%;
+  float: left;
+}
+
+.no-side-margins {
+  margin-left:0
+}

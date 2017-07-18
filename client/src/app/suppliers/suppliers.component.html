@@ -1,6 +1,6 @@
 <div class="content-container">
   <nav class="sidenav">
-    <section class="sidenav-content" style="overflow-y: auto; height: 100vh;">
+    <section class="sidenav-content">
       <biotrack-suppliers-master
         [suppliers]="suppliers"
         [activeSupplier]="activeSupplier"
@@ -8,7 +8,7 @@
       </biotrack-suppliers-master>
     </section>
   </nav>
-    <div class="content-area" style="overflow-y: auto; height: 100vh; padding-top:0px;">
+    <div class="content-area">
       <biotrack-suppliers-detail
         [selectedSupplier]="selectedSupplier"
         [subjectsBySelectedSupplier]="subjectsBySelectedSupplier">

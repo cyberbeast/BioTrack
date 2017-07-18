@@ -1,0 +1,29 @@
+.clicky:hover {
+  cursor: pointer;
+  box-shadow: 0 3px 0 0 #0094d2;
+  border: 1px solid #0094d2;
+}
+
+.fullHeight {
+  height: 100%;
+}
+
+th {
+  font-size: small;
+  font-weight: lighter;
+  border-bottom: 0;
+}
+
+table > thead > tr > th {
+  padding-bottom: 0;
+}
+
+td {
+  font-size: large;
+  /*font-weight: ;*/
+  word-wrap: break-word;
+}
+
+table {
+  margin: 0
+}

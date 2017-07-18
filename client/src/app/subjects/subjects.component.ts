@@ -25,6 +25,10 @@ export class SubjectsComponent implements OnInit {
   selectedSubject: Observable<Subject>;
   activeSubjectId: string;
 
+  selectedSubjectMetadata: any;
+  selectedSubjectIdentifications: any;
+  selectedSubjectMeasurements: any;
+
   constructor(
     private subjectsService: SubjectsService,
     private modesService: ModesService,
@@ -37,6 +41,9 @@ export class SubjectsComponent implements OnInit {
     this.selectedSubject.subscribe(v => {
       // console.log("selectedSubject is: " + JSON.stringify(v));
       this.activeSubjectId = v._id;
+      this.selectedSubjectMetadata = v.metadata;
+      this.selectedSubjectIdentifications = v.identifications;
+      this.selectedSubjectMeasurements = v.measurements;
       // console.log(this.activeSubjectId);
     });
   }

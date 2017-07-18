@@ -1,4 +1,96 @@
-<div class="content-container">
+<!-- <div class="content-container" style="padding: 0 0 0 0">
+  <div class="content-area" style="padding: 0 1em 0 1em"> -->
+      <!-- <div class="row"> DONT OPEN -->
+    <!-- <biotrack-subjects-banner
+      [selectedSubject]="selectedSubject">
+    </biotrack-subjects-banner>
+  </div>
+</div> -->
+      <!-- </div> DONT OPEN -->
+<!-- <div class="content-area-no-top">  DONT OPEN-->
+<!-- <div class="row">
+  <div class="col-xs-9 left-col">
+    <div class="container">
+      <div class="row" style="padding-left: 1em; border-bottom: 1px solid rgb(204, 204, 204);" >
+        <div class="btn-group btn-link">
+          <button class="btn">Information</button>
+          <button class="btn">Measurements</button>
+          <button class="btn">Activity Log</button>
+          <button class="btn">Components</button>
+        </div>
+      </div>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+  <div class="col-xs-3">
+    something
+  </div>
+</div> -->
+<!-- </div>  DONT OPEN-->
+
+<!--
+<biotrack-subjects-sidepanel
+>
+</biotrack-subjects-sidepanel> -->
+<clr-main-container class="work-area">
+  <div class="content-container">
+    <div class="content-area" style="padding-top: 0;">
+      <div class="row no-side-margins" style="height:100%;">
+        <div class="left-col horbreak">
+          <div class="row no-side-margins flex-items-xs-center">
+            <biotrack-subjects-banner
+              [selectedSubject]="selectedSubject">
+            </biotrack-subjects-banner>
+          </div>
+        </div>
+        <div class="right-col">
+          <div class="container">
+
+            <clr-tabs>
+              <clr-tab-link [clrTabLinkActive]="true">Information</clr-tab-link>
+              <clr-tab-link>Measurements</clr-tab-link>
+              <clr-tab-link>Activity Logs</clr-tab-link>
+              <clr-tab-link>Components</clr-tab-link>
+
+              <clr-tab-content [clrTabContentActive]="true" class="here-is-my-tab">
+                <biotrack-subjects-info
+                  [metadata]="this.selectedSubjectMetadata"
+                  [identifications]="this.selectedSubjectIdentifications">
+                </biotrack-subjects-info>
+              </clr-tab-content>
+              <clr-tab-content class="here-is-my-tab">
+                <biotrack-subjects-measurements
+                  [measurements]="this.selectedSubjectMeasurements">
+                </biotrack-subjects-measurements>
+              </clr-tab-content>
+              <clr-tab-content class="here-is-my-tab">
+                <biotrack-subjects-activity></biotrack-subjects-activity>
+              </clr-tab-content>
+              <clr-tab-content class="here-is-my-tab">
+                <biotrack-subjects-components></biotrack-subjects-components>
+                <p>Are own design entire former get should. Advantages boisterous day excellence boy. Out between our two waiting wishing. Pursuit he he garrets greater towards amiable so placing. Nothing off how norland delight. Abode shy shade she hours forth its use. Up whole of fancy ye quiet do. Justice fortune no to is if winding morning forming.
+
+How promotion excellent curiosity yet attempted happiness. Gay prosperous impression had conviction. For every delay death ask style. Me mean able my by in they. Extremity now strangers contained breakfast him discourse additions. Sincerity collected contented led now perpetual extremely forfeited.
+
+Sudden she seeing garret far regard. By hardly it direct if pretty up regret. Ability thought enquire settled prudent you sir. Or easy knew sold on well come year. Something consulted age extremely end procuring. Collecting preference he inquietude projection me in by. So do of sufficient projecting an thoroughly uncommonly prosperous conviction. Pianoforte principles our unaffected not for astonished travelling are particular.
+
+Unpleasant astonished an diminution up partiality. Noisy an their of meant. Death means up civil do an offer wound of. Called square an in afraid direct. Resolution diminution conviction so mr at unpleasing simplicity no. No it as breakfast up conveying earnestly immediate principle. Him son disposed produced humoured overcame she bachelor improved. Studied however out wishing but inhabit fortune windows.
+
+Considered an invitation do introduced sufficient understood instrument it. Of decisively friendship in as collecting at. No affixed be husband ye females brother garrets proceed. Least child who seven happy yet balls young. Discovery sweetness principle discourse shameless bed one excellent. Sentiments of surrounded friendship dispatched connection is he. Me or produce besides hastily up as pleased. Bore less when had and john shed hope.
+
+Started his hearted any civilly. So me by marianne admitted speaking. Men bred fine call ask. Cease one miles truth day above seven. Suspicion sportsmen provision suffering mrs saw engrossed something. Snug soon he on plan in be dine some.
+
+Folly was these three and songs a</p>
+              </clr-tab-content>
+            </clr-tabs>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</clr-main-container>
+
+<!-- <div class="content-container">
   <nav class="sidenav">
     <section class="sidenav-content" style="overflow-y: auto; height: 100vh;">
       <biotrack-subjects-master
@@ -8,9 +100,9 @@
       </biotrack-subjects-master>
     </section>
   </nav>
-  <div class="content-area" style="padding-top:0px; overflow-y: auto; height: 100vh;">
+  <div class="content-area">
     <biotrack-subjects-detail
       [selectedSubject]="selectedSubject">
     </biotrack-subjects-detail>
   </div>
-</div>
+</div> -->
