@@ -1,13 +1,19 @@
 import { makeExecutableSchema } from 'graphql-tools';
+import Subject from './types/subject';
+import Supplier from './types/supplier';
+import EnumTypes from './enums/enum';
+import Activity from './types/activity';
+import Measurement from './types/measurement';
+import Metadata from './types/metadata';
+import ID from './types/id';
+import Component from './types/component';
+
+// Input types
+import AddComponentInput from './inputs/AddComponentInput';
+
+// Resolvers
 import Resolvers from '../resolvers/resolvers';
-import Subject from './subject';
-import Supplier from './supplier';
-import EnumTypes from './enum';
-import Activity from './activity';
-import Measurement from './measurement';
-import Metadata from './metadata';
-import ID from './id';
-import Component from './component';
+
 
 // # supplier(name: String): Supplier
 
@@ -24,14 +30,23 @@ const RootQuery = `
   }
 `;
 
+const Mutation = `
+  type RootMutation {
+
+    addComponentToSubject(input: AddComponentInput!) : Component
+
+  }
+`
+
 const SchemaDefinition = `
   schema {
     query: RootQuery
+    mutation: RootMutation
   }
 `;
 
 console.log("Compiling BioTrack GraphQL Schema...");
 export default makeExecutableSchema({
-  typeDefs: [SchemaDefinition, RootQuery, EnumTypes, Subject, Supplier, Activity, Measurement, Metadata, Component, ID],
+  typeDefs: [SchemaDefinition, RootQuery, EnumTypes, Subject, Supplier, Activity, Measurement, Metadata, Component, ID, Mutation, AddComponentInput],
   resolvers: Resolvers
 });

@@ -73,6 +73,44 @@ export const subjectResolvers = {
         }
       }).then((res) => res);
     }
+  },
+
+  RootMutation: {
+    addComponentToSubject(root, { input }, context) {
+      console.log(JSON.stringify(input));
+
+      var newComponent = ComponentModel({
+        subject: input.subjectId,
+        type: input.type,
+        location: input.location,
+        status: input.status,
+        notes: "Default Note..."
+      })
+
+      return newComponent.save(function(err, res) {
+        if (err) {
+          console.log(err);
+          return err;
+        }
+
+        console.log("Component created..." + res._id);
+
+        SubjectModel.findById(new ObjectId(input.subjectId), function (err, subject) {
+          if (err) throw err;
+
+          subject.components.push(res._id);
+
+          subject.save(function(err, sub){
+            if (err) throw err;
+
+            console.log("Added component to subject...");
+          });
+        });
+        return res;
+      });
+
+      // SubjectModel.findById(new ObjectId(input.subjectId))
+    }
   }
 
 };

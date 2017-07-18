@@ -1,9 +1,12 @@
 const Component = `
   type Component {
     _id: String
-    name: String
+    subject: String
+    type: String
     location: String
     status: String
+    notes: String
+    group: String
   }
 `
 

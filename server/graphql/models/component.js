@@ -3,11 +3,15 @@ var Schema = mongoose.Schema;
 const dv = require('../defaultValues.json');
 
 var componentSchema = new Schema({
-  name: {
+  subject: {
+    type: Schema.Types.ObjectId,
+    required: true
+  },
+  type: {
     type: String,
     enum: dv.component_list,
-    required: true,
-    unique: true
+    unique: true,
+    required: true
   },
   location: {
     type: String,
@@ -18,6 +22,12 @@ var componentSchema = new Schema({
     type: String,
     enum: dv.status,
     required: true
+  },
+  notes: {
+    type: String
+  },
+  group: {
+    type: String
   }
 });
 
