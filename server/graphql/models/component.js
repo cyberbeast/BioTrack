@@ -3,14 +3,9 @@ var Schema = mongoose.Schema;
 const dv = require('../defaultValues.json');
 
 var componentSchema = new Schema({
-  subject: {
-    type: Schema.Types.ObjectId,
-    required: true
-  },
   type: {
     type: String,
-    enum: dv.component_list,
-    unique: true,
+    enum: Object.keys(dv.component_list),
     required: true
   },
   location: {

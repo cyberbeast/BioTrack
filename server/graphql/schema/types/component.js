@@ -1,7 +1,6 @@
 const Component = `
   type Component {
     _id: String
-    subject: String
     type: String
     location: String
     status: String

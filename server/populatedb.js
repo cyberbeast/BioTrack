@@ -10,6 +10,7 @@ import MeasurementModel from './graphql/models/measurement';
 import MetadataModel from './graphql/models/metadata';
 import IdModel from './graphql/models/id';
 import ActivityModel from './graphql/models/activity';
+import ComponentModel from './graphql/models/component';
 
 // Import default values file
 const dv = require('./graphql/defaultValues.json');
@@ -174,7 +175,28 @@ db.once('open', function() {
               });
             },
             function(activity_log_ids, supplier_id, measurement_id, metadata_id, identification_id, cb){
-              // console.log("\t* SUBJECT");
+              var components_ids = [];
+              var component_names = Object.keys(dv.component_list);
+
+              for (var i = 0; i < Object.keys(dv.component_list).length; i++){
+                new ComponentModel({
+                  type: component_names[i],
+                  location: casual.random_element(dv.location),
+                  status: casual.random_element(dv.status),
+                  notes: "Default note",
+                  group: dv.component_list[component_names[i]]
+                }).save().then((component) => {
+                  console.log( component.id + "\t -> \t component ");
+                  components_ids.push(component.id);
+
+                  if (components_ids.length === Object.keys(dv.component_list).length) {
+                    cb(null, activity_log_ids, supplier_id, measurement_id, metadata_id, identification_id, components_ids);
+                  }
+                });
+              }
+            },
+            function(activity_log_ids, supplier_id, measurement_id, metadata_id, identification_id, components_ids, cb){
+              console.log("\t* SUBJECT");
               var subject_id = "";
 
               new SubjectModel({
@@ -183,6 +205,7 @@ db.once('open', function() {
                 measurements: measurement_id,
                 supplier: supplier_id,
                 activity_log: activity_log_ids,
+                components: components_ids,
                 notes: casual.short_description
               }).save().then((subject) => {
                 console.log( subject.id + "\t -> \t subject ");
