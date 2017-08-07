@@ -19,6 +19,7 @@ import { fragmentIdentificationsOnSubject } from './fragments/identificationsOnS
 import { fragmentMetadataOnSubject } from './fragments/metadataOnSubject.fragment';
 import { fragmentSupplierOnSubject } from './fragments/supplierOnSubject.fragment';
 import { fragmentActivityLogOnSubject } from './fragments/activitylogOnSubject.fragment';
+import { fragmentComponentsOnSubject } from './fragments/componentsOnSubject.fragment';
 
 const getSubjects = gql`
   query getSubjects {
@@ -30,6 +31,7 @@ const getSubjects = gql`
       ...Measurements
       ...Supplier
       ...ActivityLog
+      ...Components
     }
   }
   ${fragmentMeasurementsOnSubject}
@@ -37,6 +39,7 @@ const getSubjects = gql`
   ${fragmentMetadataOnSubject}
   ${fragmentSupplierOnSubject}
   ${fragmentActivityLogOnSubject}
+  ${fragmentComponentsOnSubject}
 
 `
 
@@ -50,6 +53,7 @@ const getSubjectInfoById = gql`
       ...Measurements
       ...Supplier
       ...ActivityLog
+      ...Components
     }
   }
   ${fragmentMeasurementsOnSubject}
@@ -57,6 +61,7 @@ const getSubjectInfoById = gql`
   ${fragmentMetadataOnSubject}
   ${fragmentSupplierOnSubject}
   ${fragmentActivityLogOnSubject}
+  ${fragmentComponentsOnSubject}
 `
 
 @Injectable()

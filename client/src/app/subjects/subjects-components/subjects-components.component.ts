@@ -1,65 +1,77 @@
-import { Component, OnInit } from '@angular/core';
-import {StringFilter} from "clarity-angular";
+import { Component, OnInit, ViewChild } from '@angular/core';
+import {
+	IDFilter,
+	NameFilter,
+	LocationFilter,
+	GroupFilter,
+	StatusFilter
+} from '../../common/filters/component.filter';
+import { StringFilter } from 'clarity-angular';
+import { Wizard } from 'clarity-angular/wizard/wizard';
 
-class NameFilter implements StringFilter<any> {
-    accepts(component: any, search: string):boolean {
-        return component.name.toLowerCase().indexOf(search) >= 0;
-    }
-}
+// import { Component } from '';
+import { AppStore } from '../../common/models/appstore.model';
+
+import { Store } from '@ngrx/store';
 
 @Component({
-  selector: 'biotrack-subjects-components',
-  templateUrl: './subjects-components.component.html',
-  styleUrls: ['./subjects-components.component.css']
+	selector: 'biotrack-subjects-components',
+	templateUrl: './subjects-components.component.html',
+	styleUrls: ['./subjects-components.component.css']
 })
 export class SubjectsComponentsComponent implements OnInit {
-  var = false;
-  singleSelected: any[] = [];
-  private nameFilter = new NameFilter();
+	var = false;
+	singleSelected: any[] = [];
+	addComponentModalOpened = false;
+	private nameFilter = new NameFilter();
+	private idFilter = new IDFilter();
+	private locationFilter = new LocationFilter();
+	private groupFilter = new GroupFilter();
+	private statusFilter = new StatusFilter();
 
-  components = [
-    {
-      'id': '12345',
-      'name': 'namename',
-      'location': 'location 1',
-      'last_activity_id': '1oiu2223',
-    },
-    {
-      'id': '15333',
-      'name': 'A',
-      'location': 'location 5',
-      'last_activity_id': '1oiu2223'
-    },
-    {
-      'id': '877322',
-      'name': 'B',
-      'location': 'location 13',
-      'last_activity_id': '1oiu2223'
-    }
-  ]
+	components: any = [];
 
-  headers = [
-    {
-      'name':'ID',
-      'hidden':true
-    },
-    {
-      'name':'Name',
-      'hidden':false
-    },
-    {
-      'name':'Location',
-      'hidden':false
-    },
-    {
-      'name':'Last Activity ID',
-      'hidden':true
-    }
-  ]
+	@ViewChild('wizard') wizard: Wizard;
+	@ViewChild('myForm') formData: any;
 
-  constructor() { }
+	loadingFlag: boolean = false;
+	errorFlag: boolean = false;
 
-  ngOnInit() {
-  }
+	// have to define doCancel because page will prevent doCancel from working
+	// if the page had a previous button, you would need to call
+	// this.wizard.previous() manually as well...
+	doCancel(): void {
+		this.wizard.close();
+	}
 
+	onCommit(): void {
+		let value: any = this.formData.value;
+		this.loadingFlag = true;
+		this.errorFlag = false;
+
+		setTimeout(() => {
+			if (value.answer === '42') {
+				this.wizard.forceNext();
+			} else {
+				this.errorFlag = true;
+			}
+			this.loadingFlag = false;
+		}, 1000);
+	}
+
+	constructor(private store: Store<AppStore>) {
+		// store.select('selectedSubject').subscribe(v => {
+		// 	for (var k in v) {
+		// 		console.log(k);
+		// 		if (k === 'components') console.log(v[k]);
+		// 	}
+		// 	// this.components = v.components;
+		// });
+	}
+
+	ngOnInit() {
+		this.store.select('selectedSubject').subscribe(v => {
+			this.components = v['components'];
+		});
+	}
 }
