@@ -3,11 +3,14 @@ import { Subject } from './subject.model';
 // import { Mode } from ',/mode.model';
 
 export interface AppStore {
-  selectedMode: string;
+	selectedMode: string;
 
-  suppliers: Supplier[];
-  selectedSupplier: Supplier;
+	suppliers: Supplier[];
+	selectedSupplier: Supplier;
 
-  subjects: Subject[];
-  selectedSubject: Subject;
-};
+	subjects: Subject[];
+	selectedSubject: Subject;
+
+	possible_locations: string[];
+	possible_status: string[];
+}

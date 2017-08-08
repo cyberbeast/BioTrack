@@ -6,15 +6,15 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
-import { ClarityModule } from "clarity-angular";
+import { ClarityModule } from 'clarity-angular';
 
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 // import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-import {AgGridModule} from "ag-grid-angular/main";
-import {DataTableModule,SharedModule} from 'primeng/primeng';
-import {ScrollToModule} from 'ng2-scroll-to';
-import {TabViewModule} from 'primeng/primeng';
-import {Ng2PageScrollModule} from 'ng2-page-scroll';
+import { AgGridModule } from 'ag-grid-angular/main';
+import { DataTableModule, SharedModule } from 'primeng/primeng';
+import { ScrollToModule } from 'ng2-scroll-to';
+import { TabViewModule } from 'primeng/primeng';
+import { Ng2PageScrollModule } from 'ng2-page-scroll';
 
 // CLIPBOARD
 import { ClipboardModule } from 'ngx-clipboard';
@@ -42,6 +42,10 @@ import { ModesService } from './common/services/modes.service';
 import { modes } from './common/stores/modes.store';
 import { selectedModeReducer } from './common/stores/selectedMode.store';
 
+import { AppSupportService } from './common/services/app-support.service';
+import { fetchedLocationsReducer } from './common/stores/fetchedLocations.store';
+import { fetchedStatusReducer } from './common/stores/fetchedStatus.store';
+
 // DECLARATIONS
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -52,7 +56,7 @@ import { routing } from './app.routes';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SuppliersMasterComponent } from './suppliers/suppliers-master/suppliers-master.component';
 import { SuppliersDetailComponent } from './suppliers/suppliers-detail/suppliers-detail.component';
-import { RedComponentComponent } from "./suppliers/suppliers-detail/red-comp.component";
+import { RedComponentComponent } from './suppliers/suppliers-detail/red-comp.component';
 import { NavbarSectionsComponent } from './navbar/navbar-sections/navbar-sections.component';
 import { SuppliersDetailsSubjectsTabComponent } from './suppliers/suppliers-detail/suppliers-details-subjects-tab/suppliers-details-subjects-tab.component';
 import { SubjectsComponent } from './subjects/subjects.component';
@@ -79,74 +83,75 @@ import { SubjectsActivityComponent } from './subjects/subjects-activity/subjects
 import { SubjectsComponentsComponent } from './subjects/subjects-components/subjects-components.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    NavbarComponent,
-    SuppliersComponent,
-    DashboardComponent,
-    SuppliersMasterComponent,
-    SuppliersDetailComponent,
-    RedComponentComponent,
-    NavbarSectionsComponent,
-    SuppliersDetailsSubjectsTabComponent,
-    SubjectsComponent,
-    SubjectsMasterComponent,
-    SubjectsDetailComponent,
-    SubjectsInfoTabComponent,
-    SubjectsActivityTabComponent,
-    CardBiotrackIdComponent,
-    CardLocationComponent,
-    CardStatusComponent,
-    CardInformationComponent,
-    CardCabIdComponent,
-    CardSupplierComponent,
-    SubjectsMeasurementTabComponent,
-    SubjectsBannerComponent,
-    SubjectsSidepanelComponent,
-    SubjectsTabsComponent,
-    BannerCardIdComponent,
-    BannerCardCabIdComponent,
-    BannerCardSupplierComponent,
-    SubjectsInfoComponent,
-    SubjectsMeasurementsComponent,
-    SubjectsActivityComponent,
-    SubjectsComponentsComponent
-  ],
-  imports: [
-    MaterializeModule.forRoot(),
-    MM,
-    // NgxDatatableModule,
-    Ng2SmartTableModule,
-    BrowserAnimationsModule,
-    ClarityModule.forRoot(),
-    Ng2PageScrollModule.forRoot(),
-    BrowserModule,
-    FormsModule,
-    HttpModule,
-    routing,
-    ClipboardModule,
-    NgPipesModule,
-    DataTableModule,
-    SharedModule,
-    StoreModule.provideStore({
-      selectedMode: selectedModeReducer,
-      suppliers: suppliersReducer,
-      selectedSupplier: selectedSupplierReducer,
-      subjects: subjectsReducer,
-      selectedSubject: selectedSubjectReducer
-    }),
-    ApolloModule.forRoot(provideClient),
-    ScrollToModule.forRoot(),
-    TabViewModule,
-    AgGridModule.withComponents(
-            [RedComponentComponent]
-        )
-  ],
-  providers: [
-    SubjectsService,
-    SuppliersService,
-    ModesService
-  ],
-  bootstrap: [AppComponent]
+	declarations: [
+		AppComponent,
+		NavbarComponent,
+		SuppliersComponent,
+		DashboardComponent,
+		SuppliersMasterComponent,
+		SuppliersDetailComponent,
+		RedComponentComponent,
+		NavbarSectionsComponent,
+		SuppliersDetailsSubjectsTabComponent,
+		SubjectsComponent,
+		SubjectsMasterComponent,
+		SubjectsDetailComponent,
+		SubjectsInfoTabComponent,
+		SubjectsActivityTabComponent,
+		CardBiotrackIdComponent,
+		CardLocationComponent,
+		CardStatusComponent,
+		CardInformationComponent,
+		CardCabIdComponent,
+		CardSupplierComponent,
+		SubjectsMeasurementTabComponent,
+		SubjectsBannerComponent,
+		SubjectsSidepanelComponent,
+		SubjectsTabsComponent,
+		BannerCardIdComponent,
+		BannerCardCabIdComponent,
+		BannerCardSupplierComponent,
+		SubjectsInfoComponent,
+		SubjectsMeasurementsComponent,
+		SubjectsActivityComponent,
+		SubjectsComponentsComponent
+	],
+	imports: [
+		MaterializeModule.forRoot(),
+		MM,
+		// NgxDatatableModule,
+		Ng2SmartTableModule,
+		BrowserAnimationsModule,
+		ClarityModule.forRoot(),
+		Ng2PageScrollModule.forRoot(),
+		BrowserModule,
+		FormsModule,
+		HttpModule,
+		routing,
+		ClipboardModule,
+		NgPipesModule,
+		DataTableModule,
+		SharedModule,
+		StoreModule.provideStore({
+			selectedMode: selectedModeReducer,
+			suppliers: suppliersReducer,
+			selectedSupplier: selectedSupplierReducer,
+			subjects: subjectsReducer,
+			selectedSubject: selectedSubjectReducer,
+			possible_locations: fetchedLocationsReducer,
+			possible_status: fetchedStatusReducer
+		}),
+		ApolloModule.forRoot(provideClient),
+		ScrollToModule.forRoot(),
+		TabViewModule,
+		AgGridModule.withComponents([RedComponentComponent])
+	],
+	providers: [
+		SubjectsService,
+		SuppliersService,
+		ModesService,
+		AppSupportService
+	],
+	bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

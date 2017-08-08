@@ -8,7 +8,7 @@ export class IDFilter implements StringFilter<any> {
 
 export class NameFilter implements StringFilter<any> {
 	accepts(component: any, search: string): boolean {
-		return component.name.toLowerCase().indexOf(search) >= 0;
+		return component.type.toLowerCase().indexOf(search) >= 0;
 	}
 }
 

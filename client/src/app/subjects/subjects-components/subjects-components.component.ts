@@ -9,20 +9,33 @@ import {
 import { StringFilter } from 'clarity-angular';
 import { Wizard } from 'clarity-angular/wizard/wizard';
 
+import { PluckPipe } from 'ngx-pipes/src/app/pipes/array/pluck';
 // import { Component } from '';
 import { AppStore } from '../../common/models/appstore.model';
 
 import { Store } from '@ngrx/store';
 
+// app-support service;
+import { AppSupportService } from '../../common/services/app-support.service';
+
+// subject-service
+import { SubjectsService } from '../../common/services/subjects.service';
+
 @Component({
 	selector: 'biotrack-subjects-components',
 	templateUrl: './subjects-components.component.html',
-	styleUrls: ['./subjects-components.component.css']
+	styleUrls: ['./subjects-components.component.css'],
+	providers: [PluckPipe]
 })
 export class SubjectsComponentsComponent implements OnInit {
 	var = false;
-	singleSelected: any[] = [];
-	addComponentModalOpened = false;
+	selectedComponents: any[] = [];
+
+	moveComponentModal: boolean = false;
+
+	locations: any[] = [];
+	status: any[] = [];
+
 	private nameFilter = new NameFilter();
 	private idFilter = new IDFilter();
 	private locationFilter = new LocationFilter();
@@ -59,7 +72,21 @@ export class SubjectsComponentsComponent implements OnInit {
 		}, 1000);
 	}
 
-	constructor(private store: Store<AppStore>) {
+	changeLocation(newLocation: string) {
+		// console.log(this.pluckPipe.transform(this.selectedComponents, '_id'));
+		this.subjectService.changeSelectedSubjectLocation(
+			this.pluckPipe.transform(this.selectedComponents, '_id'),
+			newLocation
+		);
+		this.moveComponentModal = false;
+	}
+
+	constructor(
+		private appSupportService: AppSupportService,
+		private subjectService: SubjectsService,
+		private store: Store<AppStore>,
+		private pluckPipe: PluckPipe
+	) {
 		// store.select('selectedSubject').subscribe(v => {
 		// 	for (var k in v) {
 		// 		console.log(k);
@@ -70,8 +97,16 @@ export class SubjectsComponentsComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		this.store.select('selectedSubject').subscribe(v => {
-			this.components = v['components'];
+		this.subjectService.selectedSubject$.subscribe(v => {
+			this.components = v.components;
+		});
+
+		this.appSupportService.appValues_locations$.subscribe(locations => {
+			this.locations = locations;
+		});
+
+		this.appSupportService.appValues_status$.subscribe(status => {
+			this.status = status;
 		});
 	}
 }

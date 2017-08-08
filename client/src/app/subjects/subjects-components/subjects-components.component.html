@@ -2,11 +2,13 @@
   <div class="col-xs-12">
     <div class="card" style="margin-top:0.5em;">
       <div class="card-header">
-        <button class="stack-action btn btn-sm btn-outline" (click)="open = true" type="button">
-                Assign
+        <button class="stack-action btn btn-sm btn-outline" [disabled]="selectedComponents.length === 0" (click)="moveComponentModal = true"
+          type="button">
+                Move Component
               </button>
-        <button class="stack-action btn btn-sm btn-outline" (click)="addComponentModalOpened = true" type="button">
-              Edit
+        <button class="stack-action btn btn-sm btn-outline" [disabled]="selectedComponents.length === 0" (click)="changeComponentStatusModal = true"
+          type="button">
+              Change Status
             </button>
       </div>
     </div>
@@ -14,18 +16,9 @@
 </div>
 
 <div style="margin-top: 0.5em;">
-
-  <div class="card card-block">
-    <p class="card-text username-list">
-      Selected component:
-      <em *ngIf="!singleSelected">No component selected.</em>
-      <span class="username" *ngIf="singleSelected">{{singleSelected| json}}</span>
-    </p>
-  </div>
-
-  <clr-datagrid [(clrDgSelected)]="singleSelected">
+  <clr-datagrid [(clrDgSelected)]="selectedComponents">
     <clr-dg-footer>
-      {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{pagination.totalItems}} users
+      {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{pagination.totalItems}} components
       <clr-dg-pagination #pagination [clrDgPageSize]="10"></clr-dg-pagination>
     </clr-dg-footer>
     <clr-dg-column>
@@ -77,45 +70,60 @@
 
 
   </clr-datagrid>
+
+  <div class="card card-block">
+    <p class="card-text username-list">
+      Selected component:
+      <em *ngIf="!selectedComponents">No component selected.</em>
+      <span class="username" *ngIf="selectedComponents">{{selectedComponents| json}}</span>
+    </p>
+  </div>
 </div>
 
-<clr-wizard #wizard [(clrWizardOpen)]="open">
-  <clr-wizard-title>Assign Component</clr-wizard-title>
-
-  <clr-wizard-button [type]="'cancel'">Cancel</clr-wizard-button>
-  <clr-wizard-button [type]="'previous'">Back</clr-wizard-button>
-  <clr-wizard-button [type]="'next'">Next</clr-wizard-button>
-  <clr-wizard-button [type]="'finish'">Finish</clr-wizard-button>
-
-  <clr-wizard-page clrWizardPagePreventDefault="true" (clrWizardPageOnCommit)="onCommit()" (clrWizardPageOnCancel)="doCancel()">
-    <ng-template clrPageTitle>Form with async validation</ng-template>
-
-    <div class="spinner" *ngIf="loadingFlag">
-      Loading...
-    </div>
-    <clr-alert [clrAlertType]="'alert-info'" [clrAlertClosable]="false">
-      <div class="alert-item">
-        This&nbsp;<a href="https://en.wikipedia.org/wiki/42_(number)#The_Hitchhiker.27s_Guide_to_the_Galaxy" target="_blank">wiki article</a>&nbsp;might
-        help you answer the question.
-      </div>
-    </clr-alert>
-    <clr-alert *ngIf="errorFlag" [clrAlertType]="'alert-danger'">
-      <div class="alert-item">
-        This component has already been assigned to this subject.
-      </div>
-    </clr-alert>
-    <form #myForm="ngForm" [class.hide]="loadingFlag">
+<!--Move component to new location modal  -->
+<clr-modal [(clrModalOpen)]="moveComponentModal" [clrModalStaticBackdrop]="true">
+  <h3 class="modal-title">Move Components to New Location</h3>
+  <div class="modal-body">
+    <p>Choose a new location from the list below. This location will be updated for the components you selected.</p>
+    <form>
       <section class="form-block">
         <div class="form-group">
-          <label for="fourtyTwoInput">The answer to life, the universe and everything</label>
-          <input type="text" id="fourtyTwoInput" [(ngModel)]="answer" name="answer">
+          <label for="selects_1">New Location</label>
+          <div class="select">
+            <select id="selects_1" #newLocation>
+                    <option *ngFor="let location of locations">{{location}}</option>
+                </select>
+          </div>
         </div>
       </section>
     </form>
-  </clr-wizard-page>
-  <clr-wizard-page>
-    <ng-template clrPageTitle>Form with async validation</ng-template>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline" (click)="moveComponentModal = false">Cancel</button>
+    <button type="button" class="btn btn-primary" (click)="changeLocation(newLocation.value)">Ok</button>
+  </div>
+</clr-modal>
 
-    SUCCESS
-  </clr-wizard-page>
-</clr-wizard>
+<!--change status modal  -->
+<clr-modal [(clrModalOpen)]="changeComponentStatusModal" [clrModalStaticBackdrop]="true">
+  <h3 class="modal-title">Change Component Status</h3>
+  <div class="modal-body">
+    <p>Choose a new status from the list below. This status will be updated for the components you selected.</p>
+    <form>
+      <section class="form-block">
+        <div class="form-group">
+          <label for="selects_1">New Status</label>
+          <div class="select">
+            <select id="selects_1">
+                    <option *ngFor="let st of status">{{st}}</option>
+                </select>
+          </div>
+        </div>
+      </section>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline" (click)="changeComponentStatusModal = false">Cancel</button>
+    <button type="button" class="btn btn-primary" (click)="basic = false">Ok</button>
+  </div>
+</clr-modal>
