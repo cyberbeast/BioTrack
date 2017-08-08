@@ -12,6 +12,8 @@ import AppValues from './types/appvalues';
 // Input types
 import AddComponentInput from './inputs/AddComponentInput';
 import MoveComponentInput from './inputs/moveComponentInput';
+import ChangeComponentStatusInput from './inputs/changeComponentStatusInput';
+import AddComponentNoteInput from './inputs/addComponentNoteInput';
 
 // Resolvers
 import Resolvers from '../resolvers/resolvers';
@@ -37,6 +39,10 @@ const Mutation = `
 		addComponentToSubject(input: AddComponentInput!) : Component
 		
 		moveComponent(input: MoveComponentInput!) : [Component] 
+		
+		changeComponentStatus(input: ChangeComponentStatusInput!) : [Component]
+		
+		addComponentNote(input: AddComponentNoteInput!) : [Component]
 
   }
 `;
@@ -64,7 +70,9 @@ export default makeExecutableSchema({
 		AppValues,
 		Mutation,
 		AddComponentInput,
-		MoveComponentInput
+		MoveComponentInput,
+		ChangeComponentStatusInput,
+		AddComponentNoteInput
 	],
 	resolvers: Resolvers
 });

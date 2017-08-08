@@ -101,6 +101,53 @@ export const subjectResolvers = {
 				}
 			});
 		},
+		changeComponentStatus(root, { input }, context) {
+			console.log(JSON.stringify(input));
+
+			return ComponentModel.update(
+				{ _id: { $in: input.subjectIds } },
+				{ $set: { status: input.newStatus } },
+				{
+					multi: true
+				}
+			).then(res => {
+				console.log(res);
+				if (res.n === input.subjectIds.length) {
+					return ComponentModel.find({
+						_id: {
+							$in: input.subjectIds
+						}
+					}).then(res => {
+						console.log(res);
+						return res;
+					});
+				}
+			});
+		},
+
+		addComponentNote(root, { input }, context) {
+			console.log(JSON.stringify(input));
+
+			return ComponentModel.update(
+				{ _id: { $in: input.subjectIds } },
+				{ $set: { notes: input.newNote } },
+				{
+					multi: true
+				}
+			).then(res => {
+				console.log(res);
+				if (res.n === input.subjectIds.length) {
+					return ComponentModel.find({
+						_id: {
+							$in: input.subjectIds
+						}
+					}).then(res => {
+						console.log(res);
+						return res;
+					});
+				}
+			});
+		},
 
 		addComponentToSubject(root, { input }, context) {
 			console.log(JSON.stringify(input));
