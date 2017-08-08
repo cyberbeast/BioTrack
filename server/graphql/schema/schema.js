@@ -7,13 +7,14 @@ import Measurement from './types/measurement';
 import Metadata from './types/metadata';
 import ID from './types/id';
 import Component from './types/component';
+import AppValues from './types/appvalues';
 
 // Input types
 import AddComponentInput from './inputs/AddComponentInput';
+import MoveComponentInput from './inputs/moveComponentInput';
 
 // Resolvers
 import Resolvers from '../resolvers/resolvers';
-
 
 // # supplier(name: String): Supplier
 
@@ -26,17 +27,19 @@ const RootQuery = `
     getSupplierInfoByName(name: String!): Supplier
 
     getSubjects: [Subject]
-
+    getAppValues: AppValues
   }
 `;
 
 const Mutation = `
   type RootMutation {
 
-    addComponentToSubject(input: AddComponentInput!) : Component
+		addComponentToSubject(input: AddComponentInput!) : Component
+		
+		moveComponent(input: MoveComponentInput!) : [Component] 
 
   }
-`
+`;
 
 const SchemaDefinition = `
   schema {
@@ -45,8 +48,23 @@ const SchemaDefinition = `
   }
 `;
 
-console.log("Compiling BioTrack GraphQL Schema...");
+console.log('Compiling BioTrack GraphQL Schema...');
 export default makeExecutableSchema({
-  typeDefs: [SchemaDefinition, RootQuery, EnumTypes, Subject, Supplier, Activity, Measurement, Metadata, Component, ID, Mutation, AddComponentInput],
-  resolvers: Resolvers
+	typeDefs: [
+		SchemaDefinition,
+		RootQuery,
+		EnumTypes,
+		Subject,
+		Supplier,
+		Activity,
+		Measurement,
+		Metadata,
+		Component,
+		ID,
+		AppValues,
+		Mutation,
+		AddComponentInput,
+		MoveComponentInput
+	],
+	resolvers: Resolvers
 });
