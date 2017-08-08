@@ -10,16 +10,20 @@
           type="button">
               Change Status
             </button>
+        <button class="stack-action btn btn-sm btn-outline" [disabled]="selectedComponents.length === 0" (click)="addComponentNoteModal = true"
+          type="button">
+              Add Note
+            </button>
       </div>
     </div>
   </div>
 </div>
 
-<div style="margin-top: 0.5em;">
+<div style="margin-top: 0.2em;">
   <clr-datagrid [(clrDgSelected)]="selectedComponents">
     <clr-dg-footer>
       {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{pagination.totalItems}} components
-      <clr-dg-pagination #pagination [clrDgPageSize]="10"></clr-dg-pagination>
+      <clr-dg-pagination #pagination [clrDgPageSize]="15"></clr-dg-pagination>
     </clr-dg-footer>
     <clr-dg-column>
       <clr-dg-string-filter [clrDgStringFilter]="idFilter"></clr-dg-string-filter>
@@ -114,7 +118,7 @@
         <div class="form-group">
           <label for="selects_1">New Status</label>
           <div class="select">
-            <select id="selects_1">
+            <select id="selects_1" #newStatus>
                     <option *ngFor="let st of status">{{st}}</option>
                 </select>
           </div>
@@ -124,6 +128,21 @@
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-outline" (click)="changeComponentStatusModal = false">Cancel</button>
-    <button type="button" class="btn btn-primary" (click)="basic = false">Ok</button>
+    <button type="button" class="btn btn-primary" (click)="changeStatus(newStatus.value)">Ok</button>
+  </div>
+</clr-modal>
+
+<!--Add note modal  -->
+<clr-modal [(clrModalOpen)]="addComponentNoteModal" [clrModalStaticBackdrop]="true">
+  <h3 class="modal-title">Add Note</h3>
+  <div class="modal-body">
+    <p>The note you type below will be appended to any existing notes for the selected components.</p>
+    <form>
+      <textarea id="aForm_4" rows="7" #newNote></textarea>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline" (click)="addComponentNoteModal = false">Cancel</button>
+    <button type="button" class="btn btn-primary" (click)="addNote(newNote.value)">Ok</button>
   </div>
 </clr-modal>

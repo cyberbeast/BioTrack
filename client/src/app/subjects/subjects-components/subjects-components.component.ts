@@ -32,6 +32,8 @@ export class SubjectsComponentsComponent implements OnInit {
 	selectedComponents: any[] = [];
 
 	moveComponentModal: boolean = false;
+	changeComponentStatusModal: boolean = false;
+	addComponentNoteModal: boolean = false;
 
 	locations: any[] = [];
 	status: any[] = [];
@@ -74,11 +76,27 @@ export class SubjectsComponentsComponent implements OnInit {
 
 	changeLocation(newLocation: string) {
 		// console.log(this.pluckPipe.transform(this.selectedComponents, '_id'));
-		this.subjectService.changeSelectedSubjectLocation(
+		this.subjectService.changeSelectedSubjectsComponentsLocation(
 			this.pluckPipe.transform(this.selectedComponents, '_id'),
 			newLocation
 		);
 		this.moveComponentModal = false;
+	}
+
+	changeStatus(newStatus: string) {
+		this.subjectService.changeSelectedSubjectsComponentsStatus(
+			this.pluckPipe.transform(this.selectedComponents, '_id'),
+			newStatus
+		);
+		this.changeComponentStatusModal = false;
+	}
+
+	addNote(newNote: String) {
+		this.subjectService.addNotetoSelectedSubjectsComponent(
+			this.pluckPipe.transform(this.selectedComponents, '_id'),
+			newNote
+		);
+		this.addComponentNoteModal = false;
 	}
 
 	constructor(

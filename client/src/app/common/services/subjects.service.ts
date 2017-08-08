@@ -72,6 +72,25 @@ const moveComponent = gql`
 		}
 	}
 `;
+
+const changeComponentStatus = gql`
+	mutation changeComponentStatus($input: ChangeComponentStatusInput!) {
+		changeComponentStatus(input: $input) {
+			_id
+			status
+		}
+	}
+`;
+
+const addComponentNote = gql`
+	mutation addComponentNote($input: AddComponentNoteInput!) {
+		addComponentNote(input: $input) {
+			_id
+			notes
+		}
+	}
+`;
+
 @Injectable()
 export class SubjectsService {
 	private subjects$: Observable<Array<Subject>>;
@@ -122,7 +141,7 @@ export class SubjectsService {
 			});
 	}
 
-	changeSelectedSubjectLocation(subjectIds: String[], newLocation) {
+	changeSelectedSubjectsComponentsLocation(subjectIds: String[], newLocation) {
 		console.log(
 			'RECEIVED REQ to change location for: ' +
 				subjectIds +
@@ -144,6 +163,51 @@ export class SubjectsService {
 				this.store.dispatch({
 					type: 'UPDATE_SUBJECT_COMPONENT_LOCATION',
 					payload: data['moveComponent']
+				});
+			});
+	}
+
+	changeSelectedSubjectsComponentsStatus(subjectIds: String[], newStatus) {
+		console.log(
+			'RECEIVED REQ to change status for: ' + subjectIds + ' to ' + newStatus
+		);
+		this.apollo
+			.mutate({
+				mutation: changeComponentStatus,
+				variables: {
+					input: {
+						subjectIds: subjectIds,
+						newStatus: newStatus
+					}
+				}
+			})
+			.subscribe(({ data }) => {
+				console.log(data['changeComponentStatus']);
+				this.store.dispatch({
+					type: 'UPDATE_SUBJECT_COMPONENT_STATUS',
+					payload: data['changeComponentStatus']
+				});
+			});
+	}
+
+	addNotetoSelectedSubjectsComponent(subjectIds: String[], newNote) {
+		console.log('RECEIVED REQ to add note for: ' + subjectIds);
+
+		this.apollo
+			.mutate({
+				mutation: addComponentNote,
+				variables: {
+					input: {
+						subjectIds: subjectIds,
+						newNote: newNote
+					}
+				}
+			})
+			.subscribe(({ data }) => {
+				console.log(data['addComponentNote']);
+				this.store.dispatch({
+					type: 'UPDATE_SUBJECT_COMPONENT_NOTES',
+					payload: data['addComponentNote']
 				});
 			});
 	}
