@@ -206,7 +206,14 @@
 		"Bladder": "E, ",
 		"Viscera": "F, A, C, B"
 	},
-	"status": ["Unassigned", "Available", "Testing", "Tested", "Reclaimed"],
+	"status": [
+		"Unassigned",
+		"Available",
+		"Testing",
+		"Tested",
+		"Pending Cremation",
+		"Reclaimed"
+	],
 	"suppliers": [
 		"Alabama",
 		"Biogift",
