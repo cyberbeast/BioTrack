@@ -1,0 +1,55 @@
+<clr-modal [(clrModalOpen)]="opened && !queryEngaged" [clrModalClosable]="false" [clrModalSize]="'xl'">
+  <h3 class=" modal-title ">Interactive Inventory Query Builder</h3>
+  <div class="modal-body ">
+    <table class="table">
+      <tbody>
+        <tr>
+          <td>
+            <form>
+              <div class="form-group row">
+                <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                  <div class="select form-control">
+                    <select [(ngModel)]="categorySelection" [ngModelOptions]="{standalone: true}" #category (change)="populateOptions(category.value)">
+                        <option *ngFor="let member of id_structure">{{member.title}}</option>
+                      </select>
+                  </div>
+                </div>
+                <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+                  <div class="select form-control">
+                    <select [(ngModel)]="optionSelection" [ngModelOptions]="{standalone: true}">
+                          <option *ngFor="let member of display_options" [ngValue]="member">{{member}}</option>
+                      </select>
+                  </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                  <input class="form-control" type="text" id="gForm_1" placeholder="Enter value here" size="45" [(ngModel)]="valueSelection"
+                    [ngModelOptions]="{standalone: true}">
+                </div>
+                <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+                  <button class="btn btn-sm" (click)="addRule()">Add</button>
+                </div>
+              </div>
+            </form>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <table class="table table-compact">
+      <thead>
+        <tr *ngFor="let rule of ruleSet">
+          <th class="left">{{rule.category}} {{rule.option}} " {{rule.value}} "</th>
+          <!-- <th>{{rule.option}}</th> -->
+          <!-- <th>{{rule.value}}</th> -->
+          <th>
+            <span class="badge" (click)="removeRule(rule.index)">X</span>
+          </th>
+        </tr>
+      </thead>
+    </table>
+  </div>
+  <div class="modal-footer ">
+    <button type="button " class="btn btn-primary " (click)="opened=false ">
+            Submit
+        </button>
+  </div>
+</clr-modal>

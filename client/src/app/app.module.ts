@@ -81,6 +81,7 @@ import { SubjectsInfoComponent } from './subjects/subjects-info/subjects-info.co
 import { SubjectsMeasurementsComponent } from './subjects/subjects-measurements/subjects-measurements.component';
 import { SubjectsActivityComponent } from './subjects/subjects-activity/subjects-activity.component';
 import { SubjectsComponentsComponent } from './subjects/subjects-components/subjects-components.component';
+import { InventoryComponent } from './inventory/inventory.component';
 
 @NgModule({
 	declarations: [
@@ -114,7 +115,8 @@ import { SubjectsComponentsComponent } from './subjects/subjects-components/subj
 		SubjectsInfoComponent,
 		SubjectsMeasurementsComponent,
 		SubjectsActivityComponent,
-		SubjectsComponentsComponent
+		SubjectsComponentsComponent,
+		InventoryComponent
 	],
 	imports: [
 		MaterializeModule.forRoot(),
